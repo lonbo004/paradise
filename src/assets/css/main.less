@@ -5,8 +5,7 @@ body{
   .bc(#333333);
 }
 #app{
-  .room_f();
-  overflow: hidden auto;
+  
 }
 .space_frame{
   .ctn(@lg);
@@ -14,15 +13,18 @@ body{
 
 //style
 @marquee_H: 30px;
-.marquee_ctn{
+.marquee_frame{
   position: fixed;
   top: 0;
-  left: 50%;
+  left: 0;
+  right: 0;
   padding: 0 10px;
+  z-index: 10;
+}
+.marquee_ctn{
+  .ctn(@lg);
   height: @marquee_H;
-  max-width: @lg;
-  transform: translateX(-50%);
-  width: 100%;
+  .bc(#333333);
   .laba{
     height: 100%;
     transform-origin: left center;
