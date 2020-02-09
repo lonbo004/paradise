@@ -1,0 +1,108 @@
+//param
+@0: #000000;
+@f: #ffffff;
+@lg: 1024px;
+@up_lg: (@lg + 1);
+@md: 768px;
+@up_md: (@md + 1);
+@sm: 576px;
+@up_sm: (@sm + 1);
+@ssm: 450px;
+@up_ssm: (@ssm + 1);
+//fn
+.br() {
+  border: 1px solid red;
+}
+.c(@c){
+  color: @c
+}
+.cf() {
+  color: @f;
+}
+.c0() {
+  color: @0;
+}
+.clear() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+.WH(@WH) {
+  width: @WH;
+  height: @WH;
+}
+.W_H(@W, @H) {
+  width: @W;
+  height: @H;
+}
+.room() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.room_f() {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.book() {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+}
+.bx() {
+  box-sizing: border-box;
+}
+.vt(@align){
+  & > * {
+    vertical-align: @align;
+  }
+  &::before {
+    content: "";
+    display: inline-block;
+    vertical-align: @align;
+    width: 0;
+    height: 100%;
+    font-size: 0;
+  }
+}
+.vtc() {
+  .vt(middle);
+}
+.vtcc() {
+  .vtc();
+  text-align: center;
+}
+.vtc0() {
+  .vtc();
+  font-size: 0;
+}
+.vtb(){
+  .vt(bottom);
+}
+.cp() {
+  cursor: pointer;
+}
+.bc(@color) {
+  background-color: @color;
+}
+.ctn(@W) {
+  max-width: @W;
+  margin: auto;
+}
+.f0l1() {
+  font-size: 0;
+  line-height: 1;
+}
+.dbma() {
+  display: block;
+  margin: auto;
+}
