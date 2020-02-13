@@ -1,5 +1,6 @@
 @import "./fn.less";
 @red: #f00;
+@maxW: 1600px;
 // set
 body{
 
@@ -8,7 +9,7 @@ body{
   
 }
 .space_frame{
-  .ctn(@lg);
+  .ctn(@maxW);
 }
 
 //style
@@ -22,7 +23,7 @@ body{
   z-index: 10;
 }
 .marquee_ctn{
-  .ctn(@lg);
+  .ctn(@maxW);
   height: @marquee_H;
   .bc(#333333);
   .laba{
