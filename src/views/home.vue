@@ -1,7 +1,7 @@
 <template>
   <div class="page_frame home_frame">
     <div class="page_header">
-      <span class="site_name">小八定點外約</span>
+      <span class="site_name">天堂鳥定點外約</span>
       <span class="gj_btn">進階搜尋</span>
       <div class="key_box fx aic">
         <input class="key_input _fill" type="text" />
@@ -14,11 +14,11 @@
       <img src="@img/banner-06.jpg" />
     </slick>
     <div class="area_ctn">
-      <div class="area_box fx aic">
+      <div class="area_box fx">
         <span>地區選擇：</span>
-        <el-select class="_fill" v-model="sd_area">
-          <el-option v-for="item in areaList" :key="item.id" :label="item.name" :value="item.id"></el-option>
-        </el-select>
+        <el-radio-group v-model="sd_area">
+          <el-radio v-for="item in areaList" :key="item.id" :label="item.name" :value="item.id"></el-radio>
+        </el-radio-group>
       </div>
     </div>
     <div class="g_frame">
@@ -62,8 +62,11 @@ export default {
       slickOptions: {},
       areaList: [{
         id: "",
+        name: "台北"
+      }, {
+        id: "",
         name: "台中"
-      }],
+      },],
       sd_area: "台中",
       g_list: [
         {
