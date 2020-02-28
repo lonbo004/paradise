@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 Vue.config.productionTip = false;
 //vue-slick
+//=>https://github.com/kenwheeler/slick#readme
 import 'slick-carousel/slick/slick-theme.less';
 import 'slick-carousel/slick/slick.less';
 //Element
