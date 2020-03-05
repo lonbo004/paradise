@@ -7,7 +7,8 @@
           <img class="login" src="@img/user.png" @click="login_show = true" />
         </div>
         <div class="h_ctn _nav fx aic ctn1">
-          <div class="index_logo" :style="{backgroundImage: `url(${siteInfo.LogoUrl})`}"></div>
+          <div class="index_logo" v-if="isHomePage" :style="{backgroundImage: `url(${siteInfo.LogoUrl})`}"></div>
+          <div class="index_logo page_go_back" v-else @click="$router.go(-1)"></div>
           <div class="kw_box _fill">
             <div class="kw_item fx aic">
               <input v-model="keyword" type="text" placeholder="輸入關鍵字查詢" class="_fill" />
