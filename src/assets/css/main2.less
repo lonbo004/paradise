@@ -1,0 +1,68 @@
+@import "./fn.less";
+//params
+@maxW: 1024px;
+//color
+@main: #db5f79;
+
+.f_fill {
+  padding-top: 70px;
+}
+.f_frame{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  .f_ctn {
+    .bc(#f0f0f0);
+    height: 100%;
+    border-top: 3px solid #db5f79;
+    .f_btn {
+      .W_H(25%,100%);
+      position: relative;
+      text-align: center;
+      .f_icon{
+        cursor: pointer;
+        .W_H(50px,100%);
+        display: inline-block;
+        background-size: 60%;
+        background-position: 50% 12px;
+        background-repeat: no-repeat;
+        > p {
+          position: absolute;
+          top: 45px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &:hover {
+          transition: all .25s;
+          .c(@main);
+        }
+        &.home {
+          background-image: url('~@/assets/img/home.png');
+          &:hover {
+            background-image: url('~@/assets/img/home_on.png');
+          }
+        }
+        &.line {
+          background-image: url('~@/assets/img/line.png');
+          &:hover {
+            background-image: url('~@/assets/img/line_on.png');
+          }
+        }
+        &.sign_in {
+          background-image: url('~@/assets/img/my.png');
+          &:hover {
+            background-image: url('~@/assets/img/my_on.png');
+          }
+        }
+        &.login_out {
+          background-image: url('~@/assets/img/logout.png');
+          &:hover {
+            background-image: url('~@/assets/img/logout_on.png');
+          }
+        }
+      }
+    }
+  }
+}

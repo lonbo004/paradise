@@ -15,6 +15,7 @@ Vue.use(Element, { locale });
 //css
 import '@css/style.less';
 import '@css/main.less';
+import '@css/main2.less';
 //vue-marquee-text-component
 //https://www.npmjs.com/package/vue-marquee-text-component
 import MarqueeText from 'vue-marquee-text-component';

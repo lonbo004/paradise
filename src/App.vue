@@ -31,8 +31,22 @@
     <template v-if="SiteCode">
       <div class="f_fill"></div>
       <div class="f_frame">
-        <div class="f_ctn fx aic ctn1">
-          <div>img</div>
+        <div class="f_ctn fx aic ctn1 f">
+          <div class="f_btn">
+            <div class="f_icon home" @click="$router.push({path: '/'})">
+              <p>首頁</p>
+            </div>
+          </div>
+          <div class="f_btn">
+            <a class="f_icon line" :href="siteInfo.LineQRCode">
+              <p>Line</p>
+            </a>
+          </div>
+          <div class="f_btn">
+            <div class="f_icon" @click="login_show = true" :class="( !isLogin? 'sign_in' : 'login_out' )">
+              <p> {{ !isLogin? '登入' : '登出'}} </p>
+            </div>
+          </div>
         </div>
       </div>
     </template>
@@ -60,8 +74,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(["siteReady"]),
+    ...mapState(["siteReady", "isLogin"]),
     ...mapGetters(["siteInfo", "MarqueeList"]),
+    isLogin() {
+      return this.$store.state.isLogin;
+    },
     login_show: {
       get() {
         return this.$store.state.login_show;
