@@ -9,10 +9,11 @@ const routes = [
     name: 'home',
     component: () => import('../views/home.vue'),
   },
-  // {
-  //   path: '/',
-  //   redirect: '/'
-  // }
+  {
+    path: '/',
+    name: 'hello',
+    component: () => import('../views/hello.vue'),
+  }
 ]
 
 const router = new VueRouter({

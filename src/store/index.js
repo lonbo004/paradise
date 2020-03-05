@@ -1,13 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
+import Vue from 'vue';
+import Vuex from 'vuex';
+import getters from './getters';
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    siteInfo: {},
+    siteData: {},
     siteReady: false,
-    MarqueeList: [],
-    isLogin: false
+    memberData: {},
+    //login
+    isLogin: false,
+    login_show: false,
+
   },
+  getters
 })

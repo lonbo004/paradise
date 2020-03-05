@@ -11,7 +11,8 @@
     </div>
     <div class="town_frame">
       <div class="town_ctn fx">
-        <div class="town_box" v-for="item in TownList" :class="{active: false}">{{item.Text}}</div>
+        <div class="town_box" v-for="item in TownList" :class="{active: item.Code === sd_TownList}">{{item.Name}}</div>
+        <div class="town_box">伴遊</div>
       </div>
     </div>
     <div class="menu_frame">
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import slick from "vue-slick";//initialSlide
 import GCard from "@c/GCard.vue";
 
@@ -40,16 +41,17 @@ export default {
       slickOptions: {
         dots: true
       },
+      sd_TownList: "",
     }
   },
   computed: {
-    ...mapState(["siteInfo"]),
-    TownList() {
-      return this.siteInfo.TownList || [];
-    }
+    ...mapGetters(["siteInfo", "TownList"]),
   },
   mounted() {
-
+    this.sd_TownList = this.siteInfo.MainTown.Code;
+  },
+  methods: {
+    sp_TownList() { }
   }
 };
 </script>

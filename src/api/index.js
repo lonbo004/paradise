@@ -9,7 +9,15 @@ export function GetInfo(SiteCode, MemberCode) {
     }
   })
 }
-
+export function Member_Login(account, password) {
+  return axiosProxy({
+    url: "/ParadiseApi/Api_Member_Login",
+    method: "post",
+    data: {
+      account, password
+    }
+  })
+}
 // export function logout() {
 //   return axiosProxy({
 //     url: "/api/logout.php",
