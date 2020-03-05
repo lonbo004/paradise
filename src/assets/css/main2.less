@@ -4,6 +4,21 @@
 //color
 @main: #db5f79;
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.l_ctn {
+  animation: fadeIn .75s;
+}
+
 .f_fill {
   padding-top: 70px;
 }
@@ -16,7 +31,7 @@
   .f_ctn {
     .bc(#f0f0f0);
     height: 100%;
-    border-top: 3px solid #db5f79;
+    border-top: 3px solid @main;
     .f_btn {
       .W_H(25%,100%);
       position: relative;
@@ -25,41 +40,41 @@
         cursor: pointer;
         .W_H(50px,100%);
         display: inline-block;
-        background-size: 60%;
-        background-position: 50% 12px;
+        background-size: 75%;
+        background-position: 50% 8px;
         background-repeat: no-repeat;
         > p {
+          font-size: 18px;
           position: absolute;
           top: 45px;
           left: 50%;
           transform: translateX(-50%);
         }
-        &:hover {
-          transition: all .25s;
+        &:hover,&.active {
           .c(@main);
         }
         &.home {
-          background-image: url('~@/assets/img/home.png');
-          &:hover {
-            background-image: url('~@/assets/img/home_on.png');
+          background-image: url('~@img/home.png');
+          &:hover,&.active {
+            background-image: url('~@img/home_on.png');
           }
         }
         &.line {
-          background-image: url('~@/assets/img/line.png');
+          background-image: url('~@img/line.png');
           &:hover {
-            background-image: url('~@/assets/img/line_on.png');
+            background-image: url('~@img/line_on.png');
           }
         }
         &.sign_in {
-          background-image: url('~@/assets/img/my.png');
+          background-image: url('~@img/my.png');
           &:hover {
-            background-image: url('~@/assets/img/my_on.png');
+            background-image: url('~@img/my_on.png');
           }
         }
         &.login_out {
-          background-image: url('~@/assets/img/logout.png');
+          background-image: url('~@img/logout.png');
           &:hover {
-            background-image: url('~@/assets/img/logout_on.png');
+            background-image: url('~@img/logout_on.png');
           }
         }
       }
