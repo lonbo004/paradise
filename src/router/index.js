@@ -12,7 +12,12 @@ const routes = [
   {
     path: '/:SiteCode/top',
     name: 'top',
-    component: () => import('../views/home.vue'),
+    component: () => import('../views/top.vue'),
+  },
+  {
+    path: '/:SiteCode/meme/:id',
+    name: 'meme',
+    component: () => import('../views/meme.vue'),
   },
   {
     path: '/',
