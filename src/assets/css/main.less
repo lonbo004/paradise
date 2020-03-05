@@ -25,18 +25,23 @@
   border-radius: 15px;
   overflow: hidden;
   margin-bottom: 20px;
+  padding: 10px;
   @media (max-width: 800px) {
-    width: 48%;
+    width: 49%;
+    padding: 7px;
+    margin-bottom: 10px;
+  }
+  &._top{
+    background-image: linear-gradient(180deg,#ffffff, #ffb2ff);
   }
   &._home{
     .bc(#fec3b5);
-    padding: 10px;
   }
   ._photo{
     height: 300px;
     overflow: hidden;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     .cp();
     @media (max-width: @lg) and (min-width: 801px) {
       height: 30vw;
@@ -57,6 +62,8 @@
     padding: 10px;
     padding-bottom: 20px;
     .bc(@f);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
   ._name{
     color: @0;
@@ -239,7 +246,10 @@ body{
   .town_ctn{
     border-radius: 15px;
     .bc(@f);
-    padding: 30px 15px 15px 30px;
+    padding: 30px 10px 10px;
+    @media(max-width: @sm){
+      padding: 20px 15px 5px;
+    }
   }
   .town_box{
     display: flex;
@@ -251,24 +261,69 @@ body{
     font-size: 30px;
     color: #999;
     .cp();
-    margin-right: 15px;
-    margin-bottom: 15px;
+    margin: 0 8px 15px;
+    @media(max-width: @sm){
+      margin: 0 5px 10px;
+    }
+    font-weight: bold;
     &.active, &:hover{
       color: @f;
       .bc(#eb2654);
     }
+    @media(max-width: @md){
+      .WH(70px);
+      font-size: 20px;
+    }
   }
 }
 .menu_frame{
-  padding: 0 2% 20px;
-  .type_title{
-    margin-bottom: 20px;
-    .bc(@main);
+  padding: 0 2% 10px;
+  .menu_title{
     border-radius: 15px;
-    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .phb_title{
+    position: relative;
+    .phb{
+      border-radius: 15px;
+    }
+    span{
+      position: absolute;
+      font-size: 30px;
+      color: #fff;
+      text-shadow: 0px 2px 2px #666;
+      @media(max-width: @md){
+        font-size: 24px;
+      }
+      @media(max-width: @sm){
+        font-size: 14px;
+      }
+      &._1{
+        width: 50%;
+        top: 20px;
+        right: 20px;
+        @media(max-width: @sm){
+          top: 10px;
+          right: 10px;
+        }
+      }
+      &._2{
+        .cp();
+        right: 20px;
+        bottom: 20px;
+        @media(max-width: @sm){
+          right: 10px;
+          bottom: 10px;
+        }
+        
+      }
+    }
+  }
+  .type_title{
+    .bc(@main);
+    padding: 10px 20px;
     font-size: 40px;
     font-weight: bold;
-    line-height: 1;
     ._town{
       color: @f;
       margin-right: 10px;

@@ -20,7 +20,7 @@
           <marquee-text class="_fill">
             <span class="vtc" v-for="item in MarqueeList">
               <img class="laba" src="@img/laba.png" />
-              <span>{{item}}</span>
+              <span>{{item.Title}}</span>
             </span>
           </marquee-text>
         </div>
@@ -60,7 +60,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["siteReady"]),
+    ...mapState(["siteReady", "siteData"]),////test
     ...mapGetters(["siteInfo", "MarqueeList"]),
     login_show: {
       get() {
