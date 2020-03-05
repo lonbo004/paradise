@@ -33,12 +33,12 @@
       <div class="f_frame">
         <div class="f_ctn fx aic ctn1 f">
           <div class="f_btn">
-            <div class="f_icon home" @click="$router.push({path: '/'})">
+            <div class="f_icon home" @click="$router.push({path: '/'})" :class="(isHomePage ? 'active' : '')">
               <p>首頁</p>
             </div>
           </div>
-          <div class="f_btn">
-            <a class="f_icon line" :href="siteInfo.LineQRCode">
+          <div class=" f_btn">
+            <a class="f_icon line" :href="siteInfo.LineQRCode" target="_blank">
               <p>Line</p>
             </a>
           </div>
