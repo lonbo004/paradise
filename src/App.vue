@@ -77,10 +77,10 @@ export default {
   created() {
     ////test
     this.$router.replace({ path: "/" + setting.SiteCode });
+    this.SiteCode = setting.SiteCode;
     ////
-    this.SiteCode = location.pathname.replace(/^\//, "");
-    if (!this.SiteCode) this.$store.state.siteReady = true;
-
+    // this.SiteCode = location.pathname.replace(/^\//, "");
+    // if (!this.SiteCode) this.$store.state.siteReady = true;
   },
   mounted() { },
   methods: {

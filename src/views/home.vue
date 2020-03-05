@@ -25,6 +25,8 @@
         <GCard :class="'_home'" v-for="(item,index) in 4" :key="index" />
       </div>
     </div>
+    <!-- awt -->
+    <awt v-if="siteInfo.MainTown" :callback="()=>{sd_TownList = siteInfo.MainTown.Code}" />
   </div>
 </template>
 
@@ -32,10 +34,11 @@
 import { mapState, mapGetters } from "vuex";
 import slick from "vue-slick";//initialSlide
 import GCard from "@c/GCard.vue";
-
+// awt
+import awt from "@/awt"
 
 export default {
-  components: { slick, GCard },
+  components: { slick, GCard, awt },
   data() {
     return {
       slickOptions: {
@@ -48,7 +51,7 @@ export default {
     ...mapGetters(["siteInfo", "TownList"]),
   },
   mounted() {
-    this.sd_TownList = this.siteInfo.MainTown.Code;
+
   },
   methods: {
     sp_TownList() { }

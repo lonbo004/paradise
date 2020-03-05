@@ -1,5 +1,5 @@
 export default {
-  host: "http://103.251.112.90:9099",
+  host: "http://qk5437.org/",
   ////test
   SiteCode: "aq68nx6jyvm"
   ////
