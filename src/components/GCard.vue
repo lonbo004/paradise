@@ -1,7 +1,7 @@
 <template>
   <div class="g_box">
     <div class="_photo">
-      <img src="/img/g0.jpg" />
+      <img :src="photo" />
     </div>
     <div class="_data">
       <div class="_name">林雁兒</div>
@@ -44,7 +44,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    GInfo: Object
+  },
+  computed: {
+    photo() {
+      return (this.GInfo.LadyFileList[0] || {}).path;
+    }
+  }
+};
 </script>
 
 <style>

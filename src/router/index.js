@@ -10,6 +10,11 @@ const routes = [
     component: () => import('../views/home.vue'),
   },
   {
+    path: '/:SiteCode/top',
+    name: 'top',
+    component: () => import('../views/home.vue'),
+  },
+  {
     path: '/',
     name: 'hello',
     component: () => import('../views/hello.vue'),
