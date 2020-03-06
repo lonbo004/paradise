@@ -1,7 +1,7 @@
 <template>
   <div class="g_box">
     <div class="_photo">
-      <img :src="photo" />
+      <img :src="photo" @click="toDetail" />
     </div>
     <div class="_data">
       <div class="_name">{{GInfo.name}}</div>
@@ -44,24 +44,32 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   props: {
     GInfo: Object
   },
   computed: {
+    ...mapState(["SiteCode"]),
     photo() {
       return (this.GInfo.LadyFileList[0] || {}).path;
     },
-    price(){
+    price() {
       const sl = this.GInfo.shorttime_local_final_price;
       const so = this.GInfo.shorttime_outside_final_price;
       const ll = this.GInfo.longtime_local_final_price;
       const lo = this.GInfo.longtime_outside_final_price;
-      const _price = [sl , so , ll , lo];
-      if(_price.every(x=>x===0)) return false;
+      const _price = [sl, so, ll, lo];
+      if (_price.every(x => x === 0)) return false;
       const _max = Math.max(..._price);
       const _min = Math.min(..._price);
-      return [_min, _max].filter(x=>x>0).join("~");
+      return [_min, _max].filter(x => x > 0).join("~");
+    }
+  },
+  methods: {
+    toDetail() {
+      this.
+        this.$router.push({ path: `/${this.SiteCode}/meme/${this.GInfo.id}` })
     }
   }
 };
