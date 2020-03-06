@@ -6,7 +6,7 @@
           <div class="title">{{siteInfo.Name}}</div>
           <img v-if="!isLogin" class="login" src="@img/user.png" @click="login_show = true" />
         </div>
-        <div class="h_ctn _nav fx aic ctn1">
+        <div class="h_ctn _nav fx aic ctn1" :class="{_home: isHomePage}">
           <div class="index_logo" v-if="isHomePage" :style="{backgroundImage: `url(${siteInfo.LogoUrl})`}"></div>
           <div class="index_logo page_go_back" v-else @click="$router.go(-1)"></div>
           <div class="kw_box _fill">
@@ -28,7 +28,7 @@
       </div>
       <div class="h_fill"></div>
     </template>
-    <router-view />
+    <router-view v-if="siteReady" />
     <template v-if="SiteCode">
       <div class="f_fill"></div>
       <div class="f_frame">
@@ -88,12 +88,20 @@ export default {
       get() { return this.$store.state.SiteCode; },
       set(val) { this.$store.state.SiteCode = val; }
     },
+    siteReady: {
+      get() { return this.$store.state.siteReady; },
+      set(val) { this.$store.state.siteReady = val; }
+    },
     isHomePage() {
       return this.$route.name === "home";
     }
   },
   created() {
     this.SiteCode = location.pathname.replace(/^\//, "").split("/")[0];
+    if (!this.SiteCode) {
+      this.$router.replace({ path: "/" });
+      this.siteReady = true;
+    }
   },
   methods: {
     clear() {

@@ -84,220 +84,201 @@
 
 .meme_frame {
   padding-top: 3px;
-  .bc(#fff);
-  .meme_ctn {
-    .meme_detail {
-      background: #f0f0f0 url('~@img/swiper_bg.gif');
-      background-repeat: repeat-x;
-      background-size: contain;
+  .bc(#f0f0f0);
+  .banner_frame{
+    margin-bottom: 20px;
+    @media(max-width: @sm){
+      margin-bottom: 10px;
     }
-    .me_box {
-      width: 95%;
-      height: 490px;
-      margin: 0 auto;
-      background-color: #fd7b97;
-      border-radius: 15px;
-      padding: 10px;
-      @media (max-width: 767px) {
-        height: 250px;
+  }
+  .me_box {
+    .bc(@f);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    ._photo {
+      height: auto;
+      width: 320px;
+      border-radius: 0;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      overflow: hidden;
+      @media(max-width: @md){
+        width: 240px;
       }
-      ._list {
-        line-height: 40px;
-        font-size: 24px;
-        border-bottom: 1px dotted #ccc;
-        font-weight: 600;
-        > div {
-          @media (max-width: 767px) {
-            height: 23px;
-            line-height: 23px;
-            font-size: 13px;
-          }
-        }
-    
+      @media(max-width: @sm){
+        width: 40%;
       }
-      ._photo {
-        .W_H(35%,100%);
-        .bc(#fff);
-        border-radius: 0;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-        overflow: hidden;
-        @media (max-width: 767px) {
-          .W_H(40%,230px);
-        }
-        img {
-          max-width: unset;
-          height: 100%;
-        }
-      }
-      ._name {
+      img {
         width: 100%;
-        height: 100px;
-        line-height: 120px;
-        font-size: 40px;
-        font-weight: 600;
-
-        @media (max-width: 767px) {
-          .W_H(100%,30px);
-          line-height: 35px;
-          font-size: 20px;
-          font-weight: 600;
-          margin-bottom: 0;
-        }
+        cursor: default;
       }
-      ._data {
-        width: 65%;
+    }
+    ._data {
+      padding-bottom: 0 !important;
+      position: relative;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      @media (min-width: @up_md) {
         padding-left: 20px;
-        position: relative;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-       @media (max-width: 767px) {
-          .W_H(60%,230px);
-          border-bottom-left-radius: 0px;
-          padding-left: 10px;
-          padding-right: 10px;
+      }
+      @media(min-width: @up_sm){
+        padding-top: 30px;
+      }
+      @media(max-width: @sm){
+        padding: 5px;
       }
       ._num {
-        display: block;
-        padding-left: 10px;
         font-size: 24px;
         position: absolute;
         right: 10px;
         top: 10px;
-        color: #db5f79;
-        @media (max-width: 767px) {
+        color: @main;
+        @media (max-width: @md) {
+          font-size: 16px;
+        }
+        @media (max-width: @sm) {
           font-size: 13px;
         }
         span {
-          display: inline-block;
           color: #999;
         }
-       }
-       .price {
-          color: @main;
-          font-style: italic;
-       }
       }
     }
-    .meme_info{
-      width: 95%;
-      margin: 0 auto;
-      @media (max-width: 767px) {
-        padding-bottom: 0;
-        padding-top: 15px;
+    ._name {
+      font-size: 40px;
+      @media (max-width: @md) {
+        font-size: 30px;
       }
-      .meme_service {
-        @media (max-width: 767px) {
-          margin-top: 8px;
-        }
-        margin-bottom: 30px;
-        .service_list{
-          width: 100%;
-          height: auto;
-          border-bottom: 1px dotted #eee;
-          font-size: 20px;
-          text-align: left;
-          padding-top: 15px;
-          line-height: 28px;
-          padding-bottom: 10px;
-          @media (max-width: 767px) {
-            font-size: 14px;
-            padding-top: 5px;
-            line-height: 20px;
-            padding-bottom: 5px;
-            margin-top: 0px;
-          }
-          span {
-            color: #999;
-            a {
-              color: #0000EE;
-            }
-          }
-        }
+      @media(max-width: @sm){
+        font-size: 20px;
+        margin-bottom: 5px;
       }
     }
-    .msg_ctn {
-      padding: 30px 0;
-      .list {
-        margin-bottom: 30px;
-        .user_img {
-          text-align: center;
-          width: 82px;
-          img {
-            .WH(60px);
-            outline: 0;
-            padding: 0;
-            display: block;
-            margin: 0;
-            border-radius: 50%;
-          }
-        }
-        .comment {
-          width: calc(100% - 90px);
-          border-bottom: 1px dotted #eee;
-          position: relative;
-          .title {
-            font-size: 18px;
-            color: #4e7d9b;
-            height: 40px;
-            line-height: 40px;
-            font-weight: 700;
-          }
-          .text {
-            font-size: 18px;
-            color: #333;
-            height: auto;
-            line-height: 36px;
-            width: 100%;
-            background: #fff;
-          }
-          .date {
-            .W_H(100%,40px);
-            font-size: 14px;
-            color: #999;
-            overflow: hidden;
-            line-height: 40px;
-            text-align: right;
-            background: #fff;
-            padding-right: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-          }
-        }
-      }
-    }    
-    .comment_from {
-      input {
-        .W_H(85%,60px);
-        border-radius: 10px;
-        border: 1px solid #ddd;
-        padding-left: 20px;
-        font-size: 24px;
-        @media (max-width: 767px) { 
-          .W_H(80%,40px);
-          border-radius: 5px;
+    ._list {
+      > div {
+        line-height: 1.8;
+        @media (max-width: @md) {
           font-size: 16px;
         }
+        @media(max-width: @sm){
+          line-height: 1;
+          font-size: 13px;
+        }
+        >span{
+          &._price{
+            font-size: 100%;
+          }
+        }
       }
-      .comment_btn {
-        width: 13%;
-        height: 60px;
-        display: block;
-        margin-left: 10px;
-        background: #559cfc;
-        color: #fff;
+    }
+  }
+  .meme_info{
+    padding: 30px 2%;
+    .bc(@f);
+  }
+  .meme_service {
+    .service_list{
+      width: 100%;
+      height: auto;
+      border-bottom: 1px dotted #eee;
+      font-size: 20px;
+      text-align: left;
+      padding-top: 15px;
+      line-height: 1.8;
+      padding-bottom: 10px;
+      @media(max-width: @sm){
+        font-size: 14px;
+      }
+      span {
+        color: #999;
+        a {
+          color: #0000EE;
+        }
+      }
+    }
+  }
+  .msg_ctn {
+    padding: 30px 0;
+    .list {
+      margin-bottom: 30px;
+      .user_img {
         text-align: center;
-        line-height: 60px;
-        border-radius: 10px;
-        border: 0;
-        outline: none;
-        font-size: 24px;
-        @media (max-width: 767px) { 
-          .W_H(15%,38px);
-          line-height: 38px;
-          border-radius: 5px;
-          font-size: 16px;
+        width: 82px;
+        img {
+          .WH(60px);
+          outline: 0;
+          padding: 0;
+          display: block;
+          margin: 0;
+          border-radius: 50%;
         }
+      }
+      .comment {
+        width: calc(100% - 90px);
+        border-bottom: 1px dotted #eee;
+        position: relative;
+        .title {
+          font-size: 18px;
+          color: #4e7d9b;
+          height: 40px;
+          line-height: 40px;
+          font-weight: 700;
+        }
+        .text {
+          font-size: 18px;
+          color: #333;
+          height: auto;
+          line-height: 36px;
+          width: 100%;
+          background: #fff;
+        }
+        .date {
+          .W_H(100%,40px);
+          font-size: 14px;
+          color: #999;
+          overflow: hidden;
+          line-height: 40px;
+          text-align: right;
+          background: #fff;
+          padding-right: 10px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }    
+  .comment_from {
+    input {
+      .W_H(85%,60px);
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      padding-left: 20px;
+      font-size: 24px;
+      @media (max-width: 767px) { 
+        .W_H(80%,40px);
+        border-radius: 5px;
+        font-size: 16px;
+      }
+    }
+    .comment_btn {
+      width: 13%;
+      height: 60px;
+      display: block;
+      margin-left: 10px;
+      background: #559cfc;
+      color: #fff;
+      text-align: center;
+      line-height: 60px;
+      border-radius: 10px;
+      border: 0;
+      outline: none;
+      font-size: 24px;
+      @media (max-width: 767px) { 
+        .W_H(15%,38px);
+        line-height: 38px;
+        border-radius: 5px;
+        font-size: 16px;
       }
     }
   }

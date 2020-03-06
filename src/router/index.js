@@ -15,7 +15,7 @@ const routes = [
     component: () => import('../views/top.vue'),
   },
   {
-    path: '/:SiteCode/meme/:id',
+    path: '/:SiteCode/meme/:code',
     name: 'meme',
     component: () => import('../views/meme.vue'),
   },

@@ -8,7 +8,15 @@ export default {
     SiteCode: String,
     callback: Function
   },
+  computed: {
+    siteReady: {
+      get() { return this.$store.state.siteReady; },
+      set(val) { this.$store.state.siteReady = val; }
+    },
+  },
   mounted() {
+    ////test
+    // if (this.siteReady) return false;
     GetInfo(this.SiteCode).then(res => {
       ////test
       // if (!res.Data) {
@@ -17,6 +25,7 @@ export default {
       //   return false;
       // }
       this.$store.state.siteData = res.Data || {};
+      this.siteReady = true;
       //html render
       document.title = res.Data.Site.Name;
     });

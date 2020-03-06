@@ -1,7 +1,7 @@
 <template>
   <div class="home_frame ctn0">
     <div class="banner_frame">
-      <div class="banner_ctn">
+      <div class="banner_ctn _slick">
         <slick v-if="siteInfo.Carousel" ref="slick" :options="slickOptions" @reInit="reInit">
           <template v-if="siteInfo.Carousel.length">
             <img :src="item" v-for="item in siteInfo.Carousel" />
@@ -28,7 +28,7 @@
         <span class="_2">更多排行 >></span>
       </div>
       <div class="menu_ctn fx fw jcsb me_fill">
-        <MeCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :MeInfo="item" :key="index" />
+        <MeCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" :key="index" />
       </div>
     </div>
 

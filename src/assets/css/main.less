@@ -69,7 +69,6 @@
   }
   ._list{
     &>div{
-      float: left;
       width: 100%;
       border-bottom: 1px dashed #ddd;
       padding-bottom: 5px;
@@ -84,7 +83,7 @@
         
         &._price{
           color: @main;
-          font-size: 16px;
+          font-size: 80%;
           font-style: italic;
         }
       }
@@ -126,12 +125,11 @@ body{
       }
     }
     &._nav{
-      padding-bottom: 20px;
       .index_logo{
         .WH(20vw);
         max-width: 175px;
         max-height: 175px;
-        border: 10px solid #efafbc;
+        border: 7px solid #efafbc;
         border-radius: 50%;
         background: center no-repeat;
         background-size: cover;
@@ -185,6 +183,9 @@ body{
         }
       }
     }
+    &._home{
+      padding-bottom: 20px;
+    }
     &._mar{
       padding-bottom: 20px;
       .vtc{
@@ -230,16 +231,21 @@ body{
   .banner_ctn{
     .bc(#fd7b97);
     padding: 10px;
-    padding-bottom: 0;
     border-radius: 15px;
     position: relative;
-    .slick-slide{
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      overflow: hidden;
+    @media(max-width: @sm){
+      padding: 5px;
     }
-    .slick-dots{
-      bottom: 10px;
+    &._slick{
+      padding-bottom: 0;
+      .slick-slide{
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        overflow: hidden;
+      }
+      .slick-dots{
+        bottom: 10px;
+      }
     }
   }
 }

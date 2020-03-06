@@ -5,8 +5,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    siteReady: false,
     siteData: {},
     memberData: {},
+    currentMe: undefined,
     //login
     isLogin: false,
     login_show: false,

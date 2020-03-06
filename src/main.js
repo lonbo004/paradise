@@ -3,6 +3,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 Vue.config.productionTip = false;
+//base
+import base from '@js/base';
 //vue-slick
 //=>https://github.com/kenwheeler/slick#readme
 //=>https://www.npmjs.com/package/vue-slick
