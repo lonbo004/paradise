@@ -6,12 +6,17 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     siteData: {},
-    siteReady: false,
     memberData: {},
     //login
     isLogin: false,
     login_show: false,
-
+    //
+    SiteCode: ""
+  },
+  mutations: {
+    set_isLogin: (state) => {
+      state.isLogin = !!sessionStorage.getItem("token");
+    }
   },
   getters
 })

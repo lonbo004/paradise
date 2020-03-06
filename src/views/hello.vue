@@ -6,6 +6,19 @@
     </div>
   </div>
 </template> 
+
+<script>
+////test
+import setting from "@/setting";
+export default {
+  created() {
+    this.$store.state.SiteCode = setting.SiteCode;
+    this.$router.replace({ path: `/${setting.SiteCode}` });
+  }
+}
+////
+</script>
+
 <style lang="less">
 @import "~@css/fn.less";
 .hello_frame {
@@ -22,8 +35,6 @@
   .hello {
     margin-bottom: 20px;
     font-size: 200%;
-  }
-  .plasm {
   }
 }
 </style>

@@ -25,18 +25,17 @@ export default {
   },
   computed: {
     login_show: {
-      get() {
-        return this.$store.state.login_show;
-      },
-      set(val) {
-        this.$store.state.login_show = val;
-      }
+      get() { return this.$store.state.login_show; },
+      set(val) { this.$store.state.login_show = val; }
     }
   },
   created() {
     ////test
     this.account = "TRE";
     this.password = "PASS";
+    document.querySelectorAll("html, body").forEach(el => {
+      el.style.overflowY = "hidden";
+    })
   },
   methods: {
     Member_Login() {
@@ -45,12 +44,21 @@ export default {
           this.$store.state.memberData = res;
           localStorage.setItem("token", res.token);
         }
+        else {
+          localStorage.removeItem("token", res.token);
+        }
       }).catch(ex => {
-
+        localStorage.removeItem("token", res.token);
       }).finally(() => {
         this.$store.state.login_show = false;
+        this.$store.commit("set_isLogin");
       })
     }
+  },
+  beforeDestroy() {
+    document.querySelectorAll("html, body").forEach(el => {
+      el.style.overflowY = "auto";
+    })
   }
 }
 </script>

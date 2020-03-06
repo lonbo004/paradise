@@ -4,7 +4,7 @@
       <div class="h_frame">
         <div class="h_ctn _head ctn1 clear" v-if="isHomePage">
           <div class="title">{{siteInfo.Name}}</div>
-          <img class="login" src="@img/user.png" @click="login_show = true" />
+          <img v-if="!isLogin" class="login" src="@img/user.png" @click="login_show = true" />
         </div>
         <div class="h_ctn _nav fx aic ctn1">
           <div class="index_logo" v-if="isHomePage" :style="{backgroundImage: `url(${siteInfo.LogoUrl})`}"></div>
@@ -28,25 +28,32 @@
       </div>
       <div class="h_fill"></div>
     </template>
-    <router-view v-if="siteReady" />
+    <router-view />
     <template v-if="SiteCode">
       <div class="f_fill"></div>
       <div class="f_frame">
         <div class="f_ctn fx aic ctn1 f">
           <div class="f_btn">
-            <div class="f_icon home" @click="$router.push({path: '/'})" :class="(isHomePage ? 'active' : '')">
+            <div class="f_icon home" @click="toHomePage" :class="{active: isHomePage}">
               <p>首頁</p>
             </div>
           </div>
-          <div class=" f_btn">
+          <div class="f_btn">
             <a class="f_icon line" :href="siteInfo.LineQRCode" target="_blank">
               <p>Line</p>
             </a>
           </div>
           <div class="f_btn">
-            <div class="f_icon" @click="login_show = true" :class="( !isLogin? 'sign_in' : 'login_out' )">
-              <p> {{ !isLogin? '登入' : '登出'}} </p>
-            </div>
+            <template v-if="!isLogin">
+              <div class="f_icon sign_in" @click="login_show = true">
+                <p>登入</p>
+              </div>
+            </template>
+            <template v-else>
+              <div class="f_icon login_out" @click="logout">
+                <p>登出</p>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -62,49 +69,44 @@ import { mapState, mapGetters } from "vuex";
 import GetInfoVue from "@/awt/GetInfo.vue";
 import { GetInfo } from "@/api";
 //components
-import Login from "@c/Login"
-////test
-import setting from "@/setting";
-////
+import Login from "@c/Login";
 export default {
   components: { GetInfoVue, Login },
   data() {
     return {
-      keyword: "",
-      SiteCode: ""
+      keyword: ""
     };
   },
   computed: {
-    ...mapState(["siteReady", "isLogin", "siteData"]),////test
+    ...mapState(["isLogin", "siteData"]),////test siteData
     ...mapGetters(["siteInfo", "MarqueeList"]),
-    isLogin() {
-      return this.$store.state.isLogin;
-    },
     login_show: {
-      get() {
-        return this.$store.state.login_show;
-      },
-      set(val) {
-        this.$store.state.login_show = val;
-      }
+      get() { return this.$store.state.login_show; },
+      set(val) { this.$store.state.login_show = val; }
+    },
+    SiteCode: {
+      get() { return this.$store.state.SiteCode; },
+      set(val) { this.$store.state.SiteCode = val; }
     },
     isHomePage() {
       return this.$route.name === "home";
     }
   },
   created() {
-    ////test
-    this.$router.replace({ path: "/" + setting.SiteCode });
-    this.SiteCode = setting.SiteCode;
-    ////
-    // this.SiteCode = location.pathname.replace(/^\//, "");
-    // if (!this.SiteCode) this.$store.state.siteReady = true;
+    this.SiteCode = location.pathname.replace(/^\//, "").split("/")[0];
   },
-  mounted() { },
   methods: {
     clear() {
       this.keyword = "";
       this.SiteCode = "";
+    },
+    toHomePage() {
+      if (this.isHomePage) return false;
+      this.$router.push({ path: `/${this.SiteCode}` })
+    },
+    logout() {
+      localStorage.removeItem("token", res.token);
+      this.$store.commit("set_isLogin");
     }
   }
 };
