@@ -1,5 +1,5 @@
 <template>
-  <div class="g_box">
+  <div class="me_box">
     <div class="_photo">
       <img :src="photo" @click="toDetail" />
     </div>
@@ -68,8 +68,7 @@ export default {
   },
   methods: {
     toDetail() {
-      this.
-        this.$router.push({ path: `/${this.SiteCode}/meme/${this.GInfo.id}` })
+      this.$router.push({ path: `/${this.SiteCode}/meme/${this.GInfo.id}` })
     }
   }
 };

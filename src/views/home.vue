@@ -27,8 +27,8 @@
         <span class="_1">排行榜 約妹真實評價，請勿洗分，違規者予以封鎖。</span>
         <span class="_2">更多排行 >></span>
       </div>
-      <div class="menu_ctn fx fw jcsb g_fill">
-        <GCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :GInfo="item" :key="index" />
+      <div class="menu_ctn fx fw jcsb me_fill">
+        <MeCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :GInfo="item" :key="index" />
       </div>
     </div>
 
@@ -38,8 +38,8 @@
         <span class="_type _fill">定點</span>
         <span class="_more">更多定點 >></span>
       </div>
-      <div class="menu_ctn fx fw jcsb g_fill">
-        <!-- <GCard :class="'_home'" v-for="(item,index) in 4" :key="index" /> -->
+      <div class="menu_ctn fx fw jcsb me_fill">
+        <!-- <MeCard :class="'_home'" v-for="(item,index) in 4" :key="index" /> -->
       </div>
     </div>
     <!-- awt -->
@@ -50,12 +50,12 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import slick from "vue-slick";//initialSlide
-import GCard from "@c/GCard.vue";
+import MeCard from "@c/MeCard.vue";
 // awt
 import awt from "@/awt"
 
 export default {
-  components: { slick, GCard, awt },
+  components: { slick, MeCard, awt },
   data() {
     return {
       slickOptions: {
