@@ -2,9 +2,9 @@
   <div class="home_frame ctn0">
     <div class="banner_frame">
       <div class="banner_ctn">
-        <slick ref="slick" :options="slickOptions">
+        <slick ref="slick" :options="slickOptions" @reInit="reInit">
           <template v-if="siteInfo.Carousel.length">
-            <img :src="item" v-for="item in siteInfo.Carouse" />
+            <img :src="item" v-for="item in siteInfo.Carousel" />
           </template>
           <template v-else>
             <img src="@img/banner_default_01.jpg" />
@@ -68,10 +68,16 @@ export default {
     ...mapGetters(["siteInfo", "TownList", "MarqueeList", "LeaderBoard_LadyList"]),
   },
   mounted() {
-
+     
   },
   methods: {
-    sp_TownList() { }
+    sp_TownList() { },
+    //slick
+    reInit() {
+      this.$nextTick(() => {
+        this.$refs.slick.reSlick();
+      });
+    },
   }
 };
 </script>
