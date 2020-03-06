@@ -72,9 +72,6 @@
         </div>
       </div>
       <div class="meme_info">
-        <div id="meme_slick">
-          <div class="close"></div>
-        </div>
         <div class="meme_service">
           <div class="service_list">
             服務地區 :
