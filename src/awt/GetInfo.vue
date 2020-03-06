@@ -18,6 +18,9 @@ export default {
       }
       this.$store.state.siteData = res.Data || {};
       this.$store.state.siteReady = true;
+      //html render
+      document.title = res.Data.Site.Name;
+
     });
   }
 };
