@@ -28,7 +28,7 @@
         <span class="_2">更多排行 >></span>
       </div>
       <div class="menu_ctn fx fw jcsb me_fill">
-        <MeCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :GInfo="item" :key="index" />
+        <MeCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :MeInfo="item" :key="index" />
       </div>
     </div>
 
