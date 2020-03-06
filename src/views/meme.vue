@@ -111,20 +111,18 @@
               <img src="@img/deafult.jpg">
             </div>
             <div class="comment">
-              <div class="fx jcsb title">
+              <div class="fx title">
                 <div class="name">小宇</div>
-                <div class="reply">回復</div>
               </div>
               <div class="text">
                 臉蛋是本人，沒什麼誤差。會說簡單中文字詞，不會英文，只會越南話。膚色差不多。笑容不錯。入穴感覺不錯。但是..凸小腹。不給親。不給摸下面。身體似乎有蟹足腫。按摩簡單捏幾下後就一直拍打，請記得說OK了，否則一直拍打下去。
               </div>
               <div class="date">2020年2月21日 21:56</div>
             </div>
-            <div class="u_comment_list">
-              <div class="_list">
-                <div class="_list_name"></div>
-              </div>
-            </div>
+          </div>
+          <div class="fx comment_from">
+            <input type="text" v-model="commentText" placeholder="发表我的評價">
+            <div class="comment_btn">評價</div>
           </div>
         </div>
       </div>
@@ -135,6 +133,11 @@
 <script>
 import slick from "vue-slick";//initialSlide
 export default {
+  data() {
+    return {
+      commentText: ''
+    }
+  }
 };
 </script>
 

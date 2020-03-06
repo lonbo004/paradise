@@ -20,7 +20,7 @@
 }
 
 .f_fill {
-  padding-top: 70px;
+  padding-top: 80px;
 }
 .f_frame{
   position: fixed;
@@ -83,7 +83,7 @@
 }
 
 .meme_frame {
-  padding-top: 5px;
+  padding-top: 3px;
   .bc(#fff);
   .meme_ctn {
     .meme_detail {
@@ -98,19 +98,37 @@
       background-color: #fd7b97;
       border-radius: 15px;
       padding: 10px;
+      @media (max-width: 767px) {
+        height: 250px;
+      }
       ._list {
         line-height: 40px;
         font-size: 24px;
         border-bottom: 1px dotted #ccc;
         font-weight: 600;
+        > div {
+          @media (max-width: 767px) {
+            height: 23px;
+            line-height: 23px;
+            font-size: 13px;
+          }
+        }
+    
       }
       ._photo {
         .W_H(35%,100%);
         .bc(#fff);
-        float: left;
+        border-radius: 0;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         overflow: hidden;
+        @media (max-width: 767px) {
+          .W_H(40%,230px);
+        }
+        img {
+          max-width: unset;
+          height: 100%;
+        }
       }
       ._name {
         width: 100%;
@@ -118,12 +136,28 @@
         line-height: 120px;
         font-size: 40px;
         font-weight: 600;
+
+        @media (max-width: 767px) {
+          .W_H(100%,30px);
+          line-height: 35px;
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 0;
+        }
       }
       ._data {
-       width: 65%;
-       padding-left: 20px;
-       position: relative;
-       ._num {
+        width: 65%;
+        padding-left: 20px;
+        position: relative;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+       @media (max-width: 767px) {
+          .W_H(60%,230px);
+          border-bottom-left-radius: 0px;
+          padding-left: 10px;
+          padding-right: 10px;
+      }
+      ._num {
         display: block;
         padding-left: 10px;
         font-size: 24px;
@@ -131,21 +165,31 @@
         right: 10px;
         top: 10px;
         color: #db5f79;
+        @media (max-width: 767px) {
+          font-size: 13px;
+        }
         span {
           display: inline-block;
           color: #999;
         }
        }
        .price {
-         color: @main;
-         font-style: italic;
+          color: @main;
+          font-style: italic;
        }
       }
     }
     .meme_info{
       width: 95%;
       margin: 0 auto;
+      @media (max-width: 767px) {
+        padding-bottom: 0;
+        padding-top: 15px;
+      }
       .meme_service {
+        @media (max-width: 767px) {
+          margin-top: 8px;
+        }
         margin-bottom: 30px;
         .service_list{
           width: 100%;
@@ -156,18 +200,26 @@
           padding-top: 15px;
           line-height: 28px;
           padding-bottom: 10px;
+          @media (max-width: 767px) {
+            font-size: 14px;
+            padding-top: 5px;
+            line-height: 20px;
+            padding-bottom: 5px;
+            margin-top: 0px;
+          }
           span {
             color: #999;
             a {
-              color: #007aff;
+              color: #0000EE;
             }
           }
         }
       }
     }
     .msg_ctn {
-      padding-top: 60px;
+      padding: 30px 0;
       .list {
+        margin-bottom: 30px;
         .user_img {
           text-align: center;
           width: 82px;
@@ -213,17 +265,40 @@
           }
         }
       }
-      .u_comment_list {
-        margin-bottom: 30px;
-        overflow: hidden;
-        background: #f8f8f8;
+    }    
+    .comment_from {
+      input {
+        .W_H(85%,60px);
         border-radius: 10px;
-        padding: 20px;
-        padding-bottom: 10px;
-        box-sizing: border-box;
-        margin-left: -3em;
-        
+        border: 1px solid #ddd;
+        padding-left: 20px;
+        font-size: 24px;
+        @media (max-width: 767px) { 
+          .W_H(80%,40px);
+          border-radius: 5px;
+          font-size: 16px;
+        }
+      }
+      .comment_btn {
+        width: 13%;
+        height: 60px;
+        display: block;
+        margin-left: 10px;
+        background: #559cfc;
+        color: #fff;
+        text-align: center;
+        line-height: 60px;
+        border-radius: 10px;
+        border: 0;
+        outline: none;
+        font-size: 24px;
+        @media (max-width: 767px) { 
+          .W_H(15%,38px);
+          line-height: 38px;
+          border-radius: 5px;
+          font-size: 16px;
+        }
       }
     }
   }
-} 
+}
