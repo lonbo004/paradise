@@ -25,6 +25,11 @@ const routes = [
     component: () => import('../views/meme.vue'),
   },
   {
+    path: '/:SiteCode/search',
+    name: 'meme',
+    component: () => import('../views/search.vue'),
+  },
+  {
     path: '/',
     name: 'hello',
     component: () => import('../views/hello.vue'),

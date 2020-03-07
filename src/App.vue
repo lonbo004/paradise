@@ -15,7 +15,7 @@
               <img class="icon" src="@img/index-search.png" @click="sp_keyword('get')" />
             </div>
           </div>
-          <a class="adc" v-html="`進階<br class=up_sm_hide />搜尋`"></a>
+          <a class="adc" v-html="`進階<br class=up_sm_hide />搜尋`" @click="toPage('search')"></a>
         </div>
         <div class="h_ctn _mar fx aic ctn1" v-if="MarqueeList.length">
           <marquee-text class="_fill">
@@ -125,6 +125,11 @@ export default {
         if (!this.keyword) return false;
         if (this.keyword === this.$route.params.keyword) return false;
         this.$router.push({ path: `/${this.SiteCode}/keyword/${this.keyword}` })
+      }
+    },
+    toPage(page) {
+      if (page === "search") {
+        this.$router.push({ path: `/${this.SiteCode}/search/` })
       }
     }
   }

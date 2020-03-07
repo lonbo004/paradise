@@ -52,7 +52,7 @@
         <div class="menu_title type_title fx aic">
           <span class="_town">{{currentTown_name}}</span>
           <span class="_type _fill">外約</span>
-          <span class="_more">更多定點 >></span>
+          <span class="_more">更多外約 >></span>
         </div>
         <div class="menu_ctn fx fw jcsb me_fill">
           <MeCard :class="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
