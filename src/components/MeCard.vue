@@ -52,7 +52,7 @@ export default {
   computed: {
     ...mapState(["SiteCode"]),
     photo() {
-      return (this.meInfo.LadyFileList[0] || {}).path;
+      return this.meInfo && (this.meInfo.LadyFileList[0] || {}).path;
     },
     price() {
       const sl = this.meInfo.shorttime_local_final_price;

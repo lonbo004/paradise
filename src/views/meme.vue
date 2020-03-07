@@ -103,7 +103,7 @@
           <div class="submit"></div>
         </div>
         <div class="msg_ctn">
-          <div class="fx list" v-for="item in messageList">
+          <div class="fx list" v-for="item in meInfo.messageList">
             <div class="user_img">
               <img src="@img/deafult.jpg" />
             </div>

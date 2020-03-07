@@ -16,34 +16,48 @@
     </div>
     <div class="town_frame">
       <div class="town_ctn fx fw">
-        <div class="town_box" v-for="item in TownList" :class="{active: item.Code === sd_TownList}">{{item.Name}}</div>
+        <div class="town_box" v-for="item in TownList" :class="{active: item.Code === sd_TownList}" @click="sp_TownList('get', item.Code)">{{item.Name}}</div>
         <div class="town_box">伴遊</div>
       </div>
     </div>
     <!-- 排行榜 -->
-    <div class="menu_frame">
+    <div class="menu_frame" v-if="LeaderBoard_LadyList.length">
       <div class="menu_title phb_title">
         <img class="phb" src="@img/phb.jpg" />
         <span class="_1">排行榜 約妹真實評價，請勿洗分，違規者予以封鎖。</span>
         <span class="_2">更多排行 >></span>
       </div>
       <div class="menu_ctn fx fw jcsb me_fill">
-        <MeCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" :key="index" />
+        <MeCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" />
       </div>
     </div>
+    <!-- 定點 -->
+    <template v-for="(district,district_i) in Locate_LadyList">
+      <div class="menu_frame">
+        <div class="menu_title type_title fx aic">
+          <span class="_town">{{currentTown_name}}{{district.district_name}}</span>
+          <span class="_type _fill">定點</span>
+          <span class="_more">更多定點 >></span>
+        </div>
+        <div class="menu_ctn fx fw jcsb me_fill">
+          <MeCard :class="'_home'" v-for="item in district.LadyList" :meInfo="item" />
+        </div>
+      </div>
+    </template>
 
-    <div class="menu_frame">
+    <!-- 外約 -->
+    <div class="menu_frame" v-if="Outside_LadyList.length">
       <div class="menu_title type_title fx aic">
-        <span class="_town">台中</span>
-        <span class="_type _fill">定點</span>
+        <span class="_town">{{currentTown_name}}</span>
+        <span class="_type _fill">外約</span>
         <span class="_more">更多定點 >></span>
       </div>
       <div class="menu_ctn fx fw jcsb me_fill">
-        <!-- <MeCard :class="'_home'" v-for="(item,index) in 4" :key="index" /> -->
+        <MeCard :class="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
       </div>
     </div>
     <!-- awt -->
-    <awt v-if="siteInfo.MainTown" :callback="()=>{sd_TownList = siteInfo.MainTown.Code}" />
+    <awt v-if="siteInfo.MainTown" :callback="callback" />
   </div>
 </template>
 
@@ -53,7 +67,8 @@ import slick from "vue-slick";//initialSlide
 import MeCard from "@c/MeCard.vue";
 // awt
 import awt from "@/awt"
-
+//api
+import { Lady_Firstpage_Search } from "@/api";
 export default {
   components: { slick, MeCard, awt },
   data() {
@@ -62,10 +77,17 @@ export default {
         dots: true
       },
       sd_TownList: "",
+      LeaderBoard_LadyList: [],
+      Locate_LadyList: [],
+      Outside_LadyList: []
     }
   },
   computed: {
-    ...mapGetters(["siteInfo", "TownList", "MarqueeList", "LeaderBoard_LadyList"]),
+    ...mapState(["siteData"]),
+    ...mapGetters(["siteInfo", "TownList", "MarqueeList"]),
+    currentTown_name() {
+      return (this.TownList.find(x => x.Code === this.sd_TownList) || {}).Name;
+    }
   },
   mounted() {
 
@@ -78,6 +100,25 @@ export default {
         this.$refs.slick.reSlick();
       });
     },
+    //awt
+    callback() {
+      this.sd_TownList = this.siteInfo.MainTown.Code;
+      this.LeaderBoard_LadyList = this.siteData.LeaderBoard_LadyList;
+      this.Locate_LadyList = this.siteData.Locate_LadyList;
+      this.Outside_LadyList = this.siteData.Outside_LadyList;
+    },
+
+    sp_TownList(type, code) {
+      if (type === "get") {
+        if (this.sd_TownList === code) return false;
+        this.sd_TownList = code;
+        Lady_Firstpage_Search(code).then(res => {
+          this.LeaderBoard_LadyList = res.LeaderBoard_LadyList;
+          this.Locate_LadyList = res.Locate_LadyList;
+          this.Outside_LadyList = res.Outside_LadyList;
+        })
+      }
+    }
   }
 };
 </script>
