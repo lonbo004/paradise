@@ -4,7 +4,7 @@
       <div class="br_arc"></div>
       <div class="top_layout fx">
         <div class="top_town">
-          <div v-for="item in TownList" :class="{active: item.Code === townCode}" @click="sp_townCode('sd', item.Code)">{{item.Name}}</div>
+          <div class="side_city_btn" v-for="item in TownList" :class="{active: item.Code === townCode}" @click="sp_townCode('sd', item.Code)">{{item.Name}}</div>
         </div>
         <div class="top_box _fill">
           <div class="fx fw jcsb me_fill">
