@@ -18,6 +18,7 @@ export default new Vuex.Store({
   mutations: {
     set_isLogin: (state) => {
       state.isLogin = !!sessionStorage.getItem("token");
+      state.memberData = JSON.parse(sessionStorage.getItem("memberData"));
     }
   },
   getters

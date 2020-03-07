@@ -1,13 +1,15 @@
 import axiosProxy from './config';
 import store from '@/store';
-export function GetInfo(MemberCode) {
+export function GetInfo() {
+  let data = {
+    SiteCode: store.state.SiteCode,
+  }
+  if (store.state.memberData)
+    data.MemberCode = store.state.memberData.member_code;
   return axiosProxy({
     url: "/ParadiseApi/Api_GetInfo",
     method: "post",
-    data: {
-      SiteCode: store.state.SiteCode,
-      MemberCode
-    }
+    data
   })
 }
 export function Member_Login(account, password) {
@@ -89,6 +91,37 @@ export function Lady_Search({
       allow_service: allow_service || "",
       page: page || 0,
       page_range: page_range || 0,
+    }
+  })
+}
+export function Api_Message_Create(cotents) {
+  return axiosProxy({
+    url: "/ParadiseApi/Api_Message_Create",
+    method: "post",
+    data: {
+      site_code: store.state.SiteCode,
+      member_code: store.state.memberData.member_code,
+      member_name: store.state.memberData.name,
+      lady_code: store.state.currentMe.code,
+      lady_name: store.state.currentMe.name,
+      cotents
+    }
+  })
+}
+export function Api_Score_Create(face, attitude, body, skill) {
+  return axiosProxy({
+    url: "/ParadiseApi/Api_Score_Create",
+    method: "post",
+    data: {
+      site_code: store.state.SiteCode,
+      member_code: store.state.memberData.member_code,
+      member_name: store.state.memberData.name,
+      lady_code: store.state.currentMe.code,
+      lady_name: store.state.currentMe.name,
+      face,
+      attitude,
+      body,
+      skill
     }
   })
 }

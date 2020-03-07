@@ -102,6 +102,9 @@ export default {
       this.$router.replace({ path: "/" });
       this.siteReady = true;
     }
+    else {
+      this.$store.commit("set_isLogin");
+    }
   },
   methods: {
     clear() {
@@ -113,7 +116,8 @@ export default {
       this.$router.push({ path: `/${this.SiteCode}` })
     },
     logout() {
-      localStorage.removeItem("token", res.token);
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("memberData");
       this.$store.commit("set_isLogin");
     },
     sp_keyword(type) {

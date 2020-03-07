@@ -5,8 +5,8 @@
         <div class="l_x" @click="login_show = false">X</div>
         <img src="@img/login_banner_pc.jpg" />
         <div class="l_box">
-          <input type="text" placeholder="帳號" />
-          <input type="password" placeholder="密碼" />
+          <input type="text" v-model="account" placeholder="帳號" />
+          <input type="password" v-model="password" placeholder="密碼" />
           <div class="l_btn btn1" @click="Member_Login">登入</div>
         </div>
       </div>
@@ -30,25 +30,32 @@ export default {
     }
   },
   created() {
-    ////test
-    this.account = "TRE";
-    this.password = "PASS";
     document.querySelectorAll("html, body").forEach(el => {
       el.style.overflowY = "hidden";
     })
+  },
+  mounted() {
+    ////test
+    setTimeout(() => {
+      this.account = "iloveu";
+      this.password = "aa1234";
+    }, 100);
   },
   methods: {
     Member_Login() {
       Member_Login(this.account, this.password).then(res => {
         if (res) {
           this.$store.state.memberData = res;
-          localStorage.setItem("token", res.token);
+          sessionStorage.setItem("token", res.token);
+          sessionStorage.setItem("memberData", JSON.stringify(res));
         }
         else {
-          localStorage.removeItem("token", res.token);
+          sessionStorage.removeItem("token");
+          sessionStorage.removeItem("memberData");
         }
       }).catch(ex => {
-        localStorage.removeItem("token", res.token);
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("memberData");
       }).finally(() => {
         this.$store.state.login_show = false;
         this.$store.commit("set_isLogin");

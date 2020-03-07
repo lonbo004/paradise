@@ -89,32 +89,37 @@
             不接受 :
             <span>{{meInfo.not_allow_name||"暫無"}}</span>
           </div>
+          <div class="service_list">
+            加價項目 :
+            <span>{{meInfo.discount||"暫無"}}</span>
+          </div>
+          <div class="service_list">
+            備註 :
+            <span>{{meInfo.note||"暫無"}}</span>
+          </div>
         </div>
         <div class="meme_star">
           <div class="fx aic total_start">
-            <div class="score">
-              {{totalScore * 2}}
-            </div>
-            <el-rate v-model="totalScore" disabled score-template="{totalScore}">
-            </el-rate>
+            <div class="score">{{totalScore * 2}}</div>
+            <el-rate v-model="totalScore" disabled score-template="{totalScore}"></el-rate>
           </div>
           <div class="fx reta_item">
             <span>外貌：</span>
-            <el-rate v-model="ratingGrup.rating1" show-score text-color="#6bc414"></el-rate>
+            <el-rate v-model="ratingGrup.face_point" allow-half show-score text-color="#6bc414"></el-rate>
           </div>
           <div class="fx reta_item">
             <span>態度：</span>
-            <el-rate v-model="ratingGrup.rating2" show-score text-color="#6bc414"></el-rate>
+            <el-rate v-model="ratingGrup.attitude_point" allow-half show-score text-color="#6bc414"></el-rate>
           </div>
           <div class="fx reta_item">
             <span>身材：</span>
-            <el-rate v-model="ratingGrup.rating3" show-score text-color="#6bc414"></el-rate>
+            <el-rate v-model="ratingGrup.body_point" allow-half show-score text-color="#6bc414"></el-rate>
           </div>
           <div class="fx reta_item">
             <span>技巧：</span>
-            <el-rate v-model="ratingGrup.rating4" show-score text-color="#6bc414"></el-rate>
+            <el-rate v-model="ratingGrup.skill_point" allow-half show-score text-color="#6bc414"></el-rate>
           </div>
-          <div class="submit" @click="memeRating">送出評分</div>
+          <div class="submit" v-if="isLogin" @click="memeRating">送出評分</div>
         </div>
         <div class="msg_ctn">
           <div class="fx list" v-for="item in meInfo.messageList">
@@ -123,15 +128,15 @@
             </div>
             <div class="comment">
               <div class="title">
-                <div class="name">小宇</div>
+                <div class="name">{{item.member_name}}</div>
               </div>
-              <div class="text">臉蛋是本人，沒什麼誤差。會說簡單中文字詞，不會英文，只會越南話。膚色差不多。笑容不錯。入穴感覺不錯。但是..凸小腹。不給親。不給摸下面。身體似乎有蟹足腫。按摩簡單捏幾下後就一直拍打，請記得說OK了，否則一直拍打下去。</div>
-              <div class="date">2020年2月21日 21:56</div>
+              <div class="text">{{item.cotents}}</div>
+              <div class="date">{{MMT(item.createtime).format('YYYY年MM月YY日 HH:mm')}}</div>
             </div>
           </div>
-          <div class="fx comment_from">
-            <input type="text" v-model="commentText" placeholder="发表我的評價" />
-            <div class="comment_btn" @click="sendComment">評價</div>
+          <div class="fx comment_from" v-if="isLogin">
+            <input type="text" v-model="cotents" placeholder="發表我的評價" @keypress.enter="Api_Message_Create" />
+            <div class="comment_btn" @click="Api_Message_Create">評價</div>
           </div>
         </div>
       </div>
@@ -143,26 +148,26 @@
 import { mapState, mapGetters } from "vuex";
 import slick from "vue-slick";//initialSlide
 //api
-import { Lady_GetOne } from "@/api";
+import { Lady_GetOne, Api_Message_Create, Api_Score_Create } from "@/api";
 export default {
   components: { slick },
   data() {
     return {
       meInfo: {},
-      commentText: '',
+      cotents: '',
       ratingGrup: {
-        rating1: null,
-        rating2: null,
-        rating3: null,
-        rating4: null
+        face_point: 0,
+        attitude_point: 0,
+        body_point: 0,
+        skill_point: 0,
       }
     }
   },
   computed: {
-    ...mapState(["currentMe", "isLogin"]),
-    login_show: {
-      get() { return this.$store.state.login_show; },
-      set(val) { this.$store.state.login_show = val; }
+    ...mapState(["currentMe", "isLogin", "memberData"]),
+    currentMe: {
+      get() { return this.$store.state.currentMe; },
+      set(val) { this.$store.state.currentMe = val; }
     },
     totalScore() {
       let total = 0
@@ -175,6 +180,7 @@ export default {
     photo() {
       return ((this.meInfo.LadyFileList || [])[0] || {}).path;
     },
+    MMT: () => MMT
   },
   mounted() {
     if (this.currentMe) this.meInfo = this.currentMe;
@@ -182,18 +188,22 @@ export default {
   },
   methods: {
     memeRating() {
-      if (!this.isLogin) {
-        this.login_show = true
-      }
+      Api_Score_Create(this.face_point, this.attitude_point, this.body_point, this.skill_point).then(res => {
+        this.getData();
+      })
     },
-    sendComment() {
-      if (!this.isLogin) {
-        this.login_show = true
-      }
+    Api_Message_Create() {
+      Api_Message_Create(this.cotents).then(res => {
+        this.cotents = "";
+        this.getData();
+      })
     },
     getData() {
       Lady_GetOne(this.$route.params.code).then(res => {
-        if (res) this.meInfo = res;
+        if (res) {
+          this.meInfo = res;
+          this.currentMe = res;
+        };
       })
     }
   }
