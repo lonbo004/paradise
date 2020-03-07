@@ -11,8 +11,8 @@
           <div class="index_logo page_go_back" v-else @click="$router.go(-1)"></div>
           <div class="kw_box _fill">
             <div class="kw_item fx aic">
-              <input v-model="keyword" type="text" placeholder="輸入關鍵字查詢" class="_fill" />
-              <img class="icon" src="@img/index-search.png" />
+              <input v-model="keyword" type="text" placeholder="輸入關鍵字查詢" class="_fill" @keypress.enter="sp_keyword('get')" />
+              <img class="icon" src="@img/index-search.png" @click="sp_keyword('get')" />
             </div>
           </div>
           <a class="adc" v-html="`進階<br class=up_sm_hide />搜尋`"></a>
@@ -115,6 +115,13 @@ export default {
     logout() {
       localStorage.removeItem("token", res.token);
       this.$store.commit("set_isLogin");
+    },
+    sp_keyword(type) {
+      if (type === "get") {
+        if (!this.keyword) return false;
+        if (this.keyword === this.$route.params.keyword) return false;
+        this.$router.push({ path: `/${this.SiteCode}/keyword/${this.keyword}` })
+      }
     }
   }
 };

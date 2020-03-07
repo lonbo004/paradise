@@ -39,4 +39,16 @@ export function Lady_GetOne(ladycode) {
       ladycode
     }
   })
-}  
+}
+export function Lady_Keywords_Search(keywords, page, page_range) {
+  return axiosProxy({
+    url: "/ParadiseApi/Lady_Keywords_Search",
+    method: "post",
+    data: {
+      site_code: store.state.SiteCode,
+      keywords,
+      page,
+      page_range
+    }
+  })
+}

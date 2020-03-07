@@ -10,6 +10,11 @@ const routes = [
     component: () => import('../views/home.vue'),
   },
   {
+    path: '/:SiteCode/keyword/:keyword',
+    name: 'keyword',
+    component: () => import('../views/keyword.vue'),
+  },
+  {
     path: '/:SiteCode/top',
     name: 'top',
     component: () => import('../views/top.vue'),
