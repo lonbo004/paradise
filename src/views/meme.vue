@@ -91,16 +91,30 @@
           </div>
         </div>
         <div class="meme_star">
-          <div class="total_start">
+          <div class="fx aic total_start">
             <div class="score">
-              <span class="decimal"></span>
+              {{totalScore * 2}}
             </div>
+            <el-rate v-model="totalScore" disabled score-template="{totalScore}">
+            </el-rate>
           </div>
-          <div class="star_rate"></div>
-          <div class="star_rate"></div>
-          <div class="star_rate"></div>
-          <div class="star_rate"></div>
-          <div class="submit"></div>
+          <div class="fx reta_item">
+            <span>外貌：</span>
+            <el-rate v-model="ratingGrup.rating1" show-score text-color="#6bc414"></el-rate>
+          </div>
+          <div class="fx reta_item">
+            <span>態度：</span>
+            <el-rate v-model="ratingGrup.rating2" show-score text-color="#6bc414"></el-rate>
+          </div>
+          <div class="fx reta_item">
+            <span>身材：</span>
+            <el-rate v-model="ratingGrup.rating3" show-score text-color="#6bc414"></el-rate>
+          </div>
+          <div class="fx reta_item">
+            <span>技巧：</span>
+            <el-rate v-model="ratingGrup.rating4" show-score text-color="#6bc414"></el-rate>
+          </div>
+          <div class="submit" @click="memeRating">送出評分</div>
         </div>
         <div class="msg_ctn">
           <div class="fx list" v-for="item in meInfo.messageList">
@@ -116,8 +130,8 @@
             </div>
           </div>
           <div class="fx comment_from">
-            <input type="text" v-model="commentText" placeholder="發表我的評價" />
-            <div class="comment_btn">評價</div>
+            <input type="text" v-model="commentText" placeholder="发表我的評價" />
+            <div class="comment_btn" @click="sendComment">評價</div>
           </div>
         </div>
       </div>
@@ -126,7 +140,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import slick from "vue-slick";//initialSlide
 //api
 import { Lady_GetOne } from "@/api";
@@ -135,11 +149,29 @@ export default {
   data() {
     return {
       meInfo: {},
-      commentText: ''
+      commentText: '',
+      ratingGrup: {
+        rating1: null,
+        rating2: null,
+        rating3: null,
+        rating4: null
+      }
     }
   },
   computed: {
-    ...mapState(["currentMe"]),
+    ...mapState(["currentMe", "isLogin"]),
+    login_show: {
+      get() { return this.$store.state.login_show; },
+      set(val) { this.$store.state.login_show = val; }
+    },
+    totalScore() {
+      let total = 0
+      let data = this.ratingGrup
+      for (let score in data) {
+        total = total + data[score] / 4
+      }
+      return total
+    },
     photo() {
       return ((this.meInfo.LadyFileList || [])[0] || {}).path;
     },
@@ -149,6 +181,16 @@ export default {
     else this.getData();
   },
   methods: {
+    memeRating() {
+      if (!this.isLogin) {
+        this.login_show = true
+      }
+    },
+    sendComment() {
+      if (!this.isLogin) {
+        this.login_show = true
+      }
+    },
     getData() {
       Lady_GetOne(this.$route.params.code).then(res => {
         if (res) this.meInfo = res;

@@ -92,6 +92,61 @@
       margin-bottom: 10px;
     }
   }
+  .meme_star {
+    font-weight: 700;
+    width: 48%;
+    padding-left: 2%;
+    .total_start {
+      padding-right: 0;
+      padding-left: 0;
+      padding-bottom: 15px;
+      overflow: hidden;
+      padding-top: 0;
+      border-bottom: #ddd 1px solid;
+      margin-bottom: 30px;
+      margin-top: 12px;
+      .el-rate__icon  {
+        font-size: 32px;
+      }
+    }
+    .score {
+      font-size: 60px;
+      color: #f879a1;
+      
+    }
+    .reta_item {
+      height: 24px;
+      >span {
+        margin-right: 8px;
+      }
+    }
+    .submit {
+      font-weight: normal;
+      margin-top: 20px;
+      width: 100%;
+      height: 45px;
+      background: #eee;
+      color: #f879a1;
+      font-size: 20px;
+      line-height: 45px;
+      text-align: center;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .el-rate__text{
+      font-size: 15px;
+    }
+    .comment_btn {
+      cursor: pointer;
+      width: 13%;
+      height: 60px;
+      display: block;
+      margin-left: 10px;
+      background: #559cfc;
+      color: @f;
+    }
+  }
   .me_box {
     .bc(@f);
     padding: 0;
@@ -249,6 +304,7 @@
       }
     }
   }    
+
   .comment_from {
     input {
       .W_H(85%,60px);
@@ -315,6 +371,11 @@
       padding-left: 20px;
     }
   }
+  .el-input__suffix{
+    .bc(@f);
+    z-index: 8;
+    right: 0;
+  }
   .search_form {
     .W_H(90%,auto);
     margin: 0 auto;
@@ -327,9 +388,6 @@
           margin-left: 0px;
        }
       }
-    }
-    .el-select__caret {
-      .bc(@f);
     }
     .el-form-item__label {
       .W_H(140px,38px);
@@ -360,6 +418,7 @@
       margin-right: 10px;
       vertical-align: top;
       margin-left: -1px;
+      overflow: hidden;
       @media (max-width: @md) { 
         display: block;
         max-width: unset;
@@ -448,5 +507,81 @@
         color: @f;
       }
     }
+  }
+}
+
+.search_from_select {
+  .sp_option {
+    .el-select-dropdown__item {
+      width: 50%;
+      &.hover {
+        background-color: transparent;
+      }
+    }
+  }
+  .el-select__tags {
+    >span {
+      display: flex;
+    }
+    .el-tag__close {
+      display: none;
+    }
+  }
+  .el-checkbox {
+    margin: 0 auto;
+    background-color: transparent;
+    .el-checkbox__input {
+      border: 0;
+      background-color: transparent;
+    }
+    .el-checkbox__inner {
+      .WH(20px);
+      border: 1px solid #DCDFE6;
+      margin: 5px auto;
+      &:after {
+        top: 50%;
+        left: 30%;
+        .W_H(5px,10px);
+        border-color: @f;
+      }
+    }
+    .el-checkbox__label {
+      border: 0;
+    }
+    &.is-checked {
+      .el-checkbox__inner {
+        .bc(@main);
+        &:after {
+          transform: rotate(45deg) scaleY(1) translate(-50%,-50%);
+        }
+      }
+      .el-checkbox__label {
+        color: #333;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.t_search_frame {
+  .t_search_ctn {
+    height: 120px;
+    font-size: 30px;
+    background: #fff;
+    line-height: 120px;
+    font-weight: 600;
+    text-align: center;
+    span {
+      display: inline-block;
+      margin-left: 15px;
+      margin-right: 15px;
+      color: #ff2c59;
+    }
+  }
+  .t_s_total {
+     
+  }
+  .t_s_row {
+
   }
 }
