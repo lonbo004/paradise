@@ -19,7 +19,7 @@ export default {
     pageSizes: {
       type: Array,
       default() {
-        return [10];
+        return [3];
       }
     },
     layout: {
