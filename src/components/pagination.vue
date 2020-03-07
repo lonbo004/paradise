@@ -1,6 +1,6 @@
 <template>
   <div class="pagination_ctn">
-    <el-pagination background :pager-count="4" :current-page.sync="currentPage" :page-size.sync="pageSize" :layout="layout" :page-sizes="pageSizes" :total="total" v-bind="$attrs" @current-change="handleCurrentChange" />
+    <el-pagination background :current-page.sync="currentPage" :page-size.sync="pageSize" :layout="layout" :total="total" v-bind="$attrs" @current-change="handleCurrentChange" />
   </div>
 </template>
 
@@ -16,11 +16,9 @@ export default {
       type: Number,
       default: 1
     },
-    pageSizes: {
-      type: Array,
-      default() {
-        return [10];
-      }
+    limit: {
+      type: Number,
+      default: 20
     },
     layout: {
       type: String,
@@ -42,6 +40,14 @@ export default {
       },
       set(val) {
         this.$emit("update:page", val);
+      }
+    },
+    pageSize: {
+      get() {
+        return this.limit;
+      },
+      set(val) {
+        this.$emit("update:limit", val);
       }
     }
   },

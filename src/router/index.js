@@ -15,7 +15,7 @@ const routes = [
     component: () => import('../views/keyword.vue'),
   },
   {
-    path: '/:SiteCode/top',
+    path: '/:SiteCode/top/:townCode',
     name: 'top',
     component: () => import('../views/top.vue'),
   },

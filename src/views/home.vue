@@ -21,16 +21,18 @@
       </div>
     </div>
     <!-- 排行榜 -->
-    <div class="menu_frame" v-if="LeaderBoard_LadyList.length">
-      <div class="menu_title phb_title">
-        <img class="phb" src="@img/phb.jpg" />
-        <span class="_1">排行榜 約妹真實評價，請勿洗分，違規者予以封鎖。</span>
-        <span class="_2">更多排行 >></span>
+    <template v-if="LeaderBoard_LadyList.length">
+      <div class="menu_frame">
+        <div class="menu_title phb_title">
+          <img class="phb" src="@img/phb.jpg" />
+          <span class="_1">排行榜 約妹真實評價，請勿洗分，違規者予以封鎖。</span>
+          <span class="_2" @click="toPage('top')">更多排行 >></span>
+        </div>
+        <div class="menu_ctn fx fw jcsb me_fill">
+          <MeCard :class="'_top_home'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" />
+        </div>
       </div>
-      <div class="menu_ctn fx fw jcsb me_fill">
-        <MeCard :class="'_top'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" />
-      </div>
-    </div>
+    </template>
     <!-- 定點 -->
     <template v-for="(district,district_i) in Locate_LadyList">
       <div class="menu_frame">
@@ -44,18 +46,19 @@
         </div>
       </div>
     </template>
-
     <!-- 外約 -->
-    <div class="menu_frame" v-if="Outside_LadyList.length">
-      <div class="menu_title type_title fx aic">
-        <span class="_town">{{currentTown_name}}</span>
-        <span class="_type _fill">外約</span>
-        <span class="_more">更多定點 >></span>
+    <template v-if="Outside_LadyList.length">
+      <div class="menu_frame">
+        <div class="menu_title type_title fx aic">
+          <span class="_town">{{currentTown_name}}</span>
+          <span class="_type _fill">外約</span>
+          <span class="_more">更多定點 >></span>
+        </div>
+        <div class="menu_ctn fx fw jcsb me_fill">
+          <MeCard :class="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
+        </div>
       </div>
-      <div class="menu_ctn fx fw jcsb me_fill">
-        <MeCard :class="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
-      </div>
-    </div>
+    </template>
     <!-- awt -->
     <awt v-if="siteInfo.MainTown" :callback="callback" />
   </div>
@@ -83,7 +86,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["siteData"]),
+    ...mapState(["siteData", "SiteCode"]),
     ...mapGetters(["siteInfo", "TownList", "MarqueeList"]),
     currentTown_name() {
       return (this.TownList.find(x => x.Code === this.sd_TownList) || {}).Name;
@@ -107,7 +110,6 @@ export default {
       this.Locate_LadyList = this.siteData.Locate_LadyList;
       this.Outside_LadyList = this.siteData.Outside_LadyList;
     },
-
     sp_TownList(type, code) {
       if (type === "get") {
         if (this.sd_TownList === code) return false;
@@ -117,6 +119,11 @@ export default {
           this.Locate_LadyList = res.Locate_LadyList;
           this.Outside_LadyList = res.Outside_LadyList;
         })
+      }
+    },
+    toPage(page) {
+      if (page === "top") {
+        this.$router.push({ path: `/${this.SiteCode}/top/${this.sd_TownList}` })
       }
     }
   }
