@@ -72,6 +72,16 @@
         </div>
       </div>
       <div class="meme_info">
+        <div class="meme_file fx fw jcsb">
+          <div class="file_box" v-for="item in meInfo.LadyFileList">
+            <template v-if="/^image/.test(item.filetype)">
+              <img :src="item.path" />
+            </template>
+            <template v-if="/^video/.test(item.filetype)">
+              <video :src="item.path"></video>
+            </template>
+          </div>
+        </div>
         <div class="meme_service">
           <div class="service_list">
             服務地區 :
