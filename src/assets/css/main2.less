@@ -14,6 +14,33 @@
     transform: translateY(0%);
   }
 }
+.pagination_ctn {
+  text-align: center;
+  .el-pagination.is-background {
+    .btn-prev, .btn-next {
+      .WH(50px);
+      background: #eee;
+      color: #999;
+      .el-icon {
+        font-size: 30px;
+      }
+    }
+    li {
+      .WH(50px);
+      background: #eee;
+      color: #999;
+      line-height: 50px;
+      font-size: 30px;
+      border-radius: 5px;
+      font-style: italic;
+    }
+    li:not(.disabled).active, li:not(.disabled):hover {
+      background: #eee;
+      color: #ff0051;
+      font-weight: 800;
+    }
+  }
+}
 
 .l_ctn {
   animation: fadeIn 1s forwards;
@@ -565,9 +592,11 @@
 
 .t_search_frame {
   .t_search_ctn {
+    .bc(@f);
+  }
+  .t_s_total {
     height: 120px;
     font-size: 30px;
-    background: #fff;
     line-height: 120px;
     font-weight: 600;
     text-align: center;
@@ -578,10 +607,9 @@
       color: #ff2c59;
     }
   }
-  .t_s_total {
-     
-  }
   .t_s_row {
-
+    .W_H(100%,146px);
+    .bc(#ddd);
+    position: relative;
   }
 }
