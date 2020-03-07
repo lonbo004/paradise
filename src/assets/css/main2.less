@@ -42,6 +42,25 @@
   }
 }
 
+.side_city_btn {
+  cursor: pointer;
+  width: 125px;
+  height: 50px;
+  text-align: center;
+  font-size: 24px;
+  color: #666;
+  line-height: 50px;
+  margin: 0 auto;
+  font-weight: 600;
+  margin-bottom: 10px;
+  &:hover {
+    background: #ff2c59;
+    border-radius: 50px;
+    color: @f;
+  }
+}
+
+
 .l_ctn {
   animation: fadeIn 1s forwards;
 }
@@ -594,6 +613,12 @@
   .t_search_ctn {
     .bc(@f);
   }
+  .t_s_form {
+    height: 100%;
+    > .el-row {
+      height: 100%;
+    }
+  }
   .t_s_total {
     height: 120px;
     font-size: 30px;
@@ -607,9 +632,41 @@
       color: #ff2c59;
     }
   }
+  .town {
+    .side_city_btn {
+      .bc(#ff2c59);
+      margin-bottom: 0;
+      height: 40px;
+      line-height: 40px;
+      color: @f;
+      border-radius: 50px;
+    }
+  }
   .t_s_row {
     .W_H(100%,146px);
     .bc(#ddd);
     position: relative;
+  }
+
+  .t_s_content {
+
+  }
+  .t_s_city {
+    .W_H(190px, auto);
+    padding: 25px 0;
+  }
+  .t_s_res {
+    width: 833px;
+    height: auto;
+    border-left: 1px solid #ddd;
+    padding-bottom: 30px;
+  }
+  .t_s_box {
+    padding: 10px;
+    height: 40px;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px dotted #ccc;
+    padding-top: 15px;
   }
 }
