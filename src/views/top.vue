@@ -10,7 +10,7 @@
           <div class="fx fw jcsb me_fill">
             <MeCard :class="'_top'" v-for="(item,index) in me_list" :meInfo="item" />
           </div>
-          <div class="top_p_box">
+          <div class="top_p_box" v-if="me_list.length">
             <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="getData" />
           </div>
         </div>
@@ -52,6 +52,7 @@ export default {
         page_range: this.page_range
       }
       Lady_Search(params).then(res => {
+        this.page = 1;
         this.me_list = res.LadyList;
         this.count = res.count;
       })

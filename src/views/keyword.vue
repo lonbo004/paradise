@@ -10,7 +10,7 @@
       <div class="kw_box fx fw jcsb me_fill">
         <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
       </div>
-      <div class="kw_p_box">
+      <div class="kw_p_box" v-if="me_list.length">
         <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="getData" />
       </div>
     </div>
@@ -39,6 +39,7 @@ export default {
   methods: {
     getData() {
       Lady_Keywords_Search(this.keyword, this.page, this.page_range).then(res => {
+        this.page = 1;
         this.me_list = res.LadyList;
         this.count = res.count;
       })

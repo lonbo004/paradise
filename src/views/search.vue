@@ -19,9 +19,17 @@
             </el-col>
             <el-col :sm="8">
               <el-form-item class="form_label" label="服務地區">
-                <el-select class="type_input" v-model="params.area" multiple placeholder="請選擇服務地區">
+                <el-select class="type_input search_from_select" v-model="params.area" multiple placeholder="請選擇服務地區" popper-class="search_from_select" @change="areaSelect">
+                  <div class="fx sp_option">
+                    <el-option :value="'all'">
+                      <span>全選</span>
+                    </el-option>
+                    <el-option :value="'clear'">
+                      <span>清除</span>
+                    </el-option>
+                  </div>
                   <el-option :label="item.Name" :value="item.Code" v-for="item in areaList">
-                    <el-checkbox-group class="check_group">
+                    <el-checkbox-group class="check_group" v-model="params.area">
                       <el-checkbox :label="item.Name" :value="item.Code">{{item.Name}}</el-checkbox>
                     </el-checkbox-group>
                   </el-option>
@@ -119,6 +127,7 @@ export default {
         serviceModeList: [],
         environmentList: []
       },
+      oldChooseData: [],
     }
   },
   computed: {
@@ -143,8 +152,7 @@ export default {
       return this.siteInfo.ServiceTypeList
     },
     cityList() {
-      let res = this.TownList.map((tw) => { return { Name: tw.Name, Code: tw.Code } })
-      return res
+      return this.TownList
     },
     areaList() {
       let res = []
@@ -158,10 +166,27 @@ export default {
   methods: {
     searchMeiMei() {
       console.log('submit!');
+    },
+    areaSelect(val) {
+      const allValues = this.areaList.map(item => {
+        return item.Code;
+      });
+      const oldVal = this.oldChooseData.length > 0 ? this.oldChooseData : []
+      if (val.includes('all')) {
+        this.params.area = allValues;
+      }
+
+      // const res = item.find((obj, idx) => obj[idx] === 'all' || obj === 'clear')
+      // console.log(res)
+      // if (item[0] === 'all' || !res) {
+      //   console.log(item)
+      //   this.params.area = this.areaList.map(areas => areas.Code)
+      // }
+      // if (item[0] === 'clear' || res) {
+      //   console.log(item, res)
+      //   this.params.area = []
+      // }
     }
   },
 };
 </script>
-
-<style>
-</style>
