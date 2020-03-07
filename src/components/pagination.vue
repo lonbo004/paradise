@@ -1,6 +1,6 @@
 <template>
   <div class="pagination_ctn">
-    <el-pagination background :current-page.sync="currentPage" :page-size.sync="pageSize" :layout="layout" :page-sizes="pageSizes" :total="total" v-bind="$attrs" @current-change="handleCurrentChange" />
+    <el-pagination background :pager-count="4" :current-page.sync="currentPage" :page-size.sync="pageSize" :layout="layout" :page-sizes="pageSizes" :total="total" v-bind="$attrs" @current-change="handleCurrentChange" />
   </div>
 </template>
 
