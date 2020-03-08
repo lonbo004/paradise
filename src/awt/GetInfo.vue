@@ -15,15 +15,13 @@ export default {
     },
   },
   mounted() {
-    ////test
-    // if (this.siteReady) return false;
+    if (this.siteReady) return false;
     GetInfo(this.SiteCode).then(res => {
-      ////test
-      // if (!res.Data) {
-      //   this.callback();
-      //   this.$router.replace({ path: "/" });
-      //   return false;
-      // }
+      if (!res.Data) {
+        this.callback();
+        this.$router.replace({ path: "/" });
+        return false;
+      }
       this.$store.state.siteData = res.Data || {};
       this.siteReady = true;
       //html render

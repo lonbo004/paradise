@@ -12,8 +12,11 @@
 import setting from "@/setting";
 export default {
   created() {
-    this.$store.state.SiteCode = setting.SiteCode;
-    this.$router.replace({ path: `/${setting.SiteCode}` });
+    if (isDEV) {
+      this.$store.state.SiteCode = setting.SiteCode;
+      this.$store.state.siteReady = false;
+      this.$router.replace({ path: `/${setting.SiteCode}` });
+    }
   }
 }
 ////

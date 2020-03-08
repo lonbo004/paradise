@@ -28,9 +28,9 @@
           <span class="_1">排行榜 約妹真實評價，請勿洗分，違規者予以封鎖。</span>
           <span class="_2" @click="toPage('top')">更多排行 >></span>
         </div>
-        <div class="menu_ctn fx fw jcsb me_fill">
+        <MeLayout>
           <MeCard :class="'_top_home'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" />
-        </div>
+        </MeLayout>
       </div>
     </template>
     <!-- 定點 -->
@@ -41,9 +41,9 @@
           <span class="_type _fill">定點</span>
           <span class="_more">更多定點 >></span>
         </div>
-        <div class="menu_ctn fx fw jcsb me_fill">
+        <MeLayout>
           <MeCard :class="'_home'" v-for="item in district.LadyList" :meInfo="item" />
-        </div>
+        </MeLayout>
       </div>
     </template>
     <!-- 外約 -->
@@ -54,9 +54,9 @@
           <span class="_type _fill">外約</span>
           <span class="_more">更多外約 >></span>
         </div>
-        <div class="menu_ctn fx fw jcsb me_fill">
+        <MeLayout>
           <MeCard :class="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
-        </div>
+        </MeLayout>
       </div>
     </template>
     <!-- awt -->
@@ -66,14 +66,16 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import slick from "vue-slick";//initialSlide
-import MeCard from "@c/MeCard.vue";
 // awt
-import awt from "@/awt"
+import awt from "@/awt";
 //api
 import { Lady_Firstpage_Search } from "@/api";
+//components
+import MeLayout from "@c/MeLayout";
+import MeCard from "@c/MeCard.vue";
+import slick from "vue-slick";//initialSlide
 export default {
-  components: { slick, MeCard, awt },
+  components: { MeLayout, slick, MeCard, awt },
   data() {
     return {
       slickOptions: {

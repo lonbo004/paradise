@@ -7,9 +7,9 @@
           <div class="side_city_btn" v-for="item in TownList" :class="{active: item.Code === townCode}" @click="sp_townCode('sd', item.Code)">{{item.Name}}</div>
         </div>
         <div class="top_box _fill">
-          <div class="fx fw jcsb me_fill">
+          <MeLayout>
             <MeCard :class="'_top'" v-for="(item,index) in me_list" :meInfo="item" />
-          </div>
+          </MeLayout>
           <div class="top_p_box" v-if="me_list.length">
             <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="getData" />
           </div>
@@ -24,10 +24,11 @@ import { mapState, mapGetters } from "vuex";
 //api
 import { Lady_Search } from "@/api";
 //components
+import MeLayout from "@c/MeLayout";
 import MeCard from "@c/MeCard";
 import pagination from "@c/pagination";
 export default {
-  components: { MeCard, pagination },
+  components: { MeLayout, MeCard, pagination },
   data() {
     return {
       count: 0,

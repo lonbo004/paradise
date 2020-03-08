@@ -1,6 +1,3 @@
-//param
-@0: #000000;
-@f: #ffffff;
 @lg: 1024px;
 @up_lg: (@lg + 1);
 @md: 768px;
@@ -9,18 +6,18 @@
 @up_sm: (@sm + 1);
 @ssm: 450px;
 @up_ssm: (@ssm + 1);
+//color
+@0: #000000;
+@f: #ffffff;
+@main: #db5f79;
+//param
+@maxW: 1024px;
 //fn
 .br() {
   border: 1px solid red;
 }
-.c(@c){
-  color: @c
-}
 .cf() {
   color: @f;
-}
-.c0() {
-  color: @0;
 }
 .clear() {
   &::after {

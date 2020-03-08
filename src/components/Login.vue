@@ -34,13 +34,16 @@ export default {
       el.style.overflowY = "hidden";
     })
   },
+  ////test
   mounted() {
-    ////test
-    setTimeout(() => {
-      this.account = "iloveu";
-      this.password = "aa1234";
-    }, 100);
+    if (isDEV) {
+      setTimeout(() => {
+        this.account = "iloveu";
+        this.password = "aa1234";
+      }, 0);
+    }
   },
+  ////
   methods: {
     Member_Login() {
       Member_Login(this.account, this.password).then(res => {
@@ -70,5 +73,54 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+@import "~@css/fn.less";
+.l_frame {
+  .room_f();
+  .bc(rgba(0, 0, 0, 0.8));
+  .l_ctn {
+    flex-shrink: 1;
+    .bc(@f);
+    position: relative;
+    max-width: 96%;
+    border-radius: 15px;
+    overflow: hidden;
+    animation: fadeIn 1s forwards;
+  }
+  .l_x {
+    font-size: 40px;
+    .cf();
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    .cp();
+    line-height: 1;
+  }
+  .l_box {
+    padding: 15% 10%;
+    font-size: 20px;
+    & > *:not(:last-child) {
+      margin-bottom: 30px;
+    }
+    & > input {
+      display: block;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding: 0 10px 10px;
+      font-size: 20px;
+    }
+  }
+  .l_btn {
+    .bc(#0b2633);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.18), 0 4px 8px 0 rgba(0, 0, 0, 0.15);
+    color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0 10px;
+    margin-top: 60px;
+  }
+}
 </style>

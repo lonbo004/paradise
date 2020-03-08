@@ -2,9 +2,9 @@
   <div class="search_frame ctn0">
     <div class="search_ctn" v-if="me_list.length">
       <div class="search_title">使用進階組合搜尋（*不填則搜尋所有）：</div>
-      <div class="fx fw jcsb me_fill">
+      <MeLayout>
         <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
-      </div>
+      </MeLayout>
       <div>
         <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="getData" />
       </div>
@@ -120,10 +120,11 @@ import { mapState, mapGetters } from "vuex";
 //api
 import { Lady_Search } from "@/api";
 //components
+import MeLayout from "@c/MeLayout";
 import MeCard from "@c/MeCard";
 import pagination from "@c/pagination";
 export default {
-  components: { MeCard, pagination },
+  components: { MeLayout, MeCard, pagination },
   data() {
     return {
       me_list: [],

@@ -58,3 +58,47 @@ export default {
   }
 };
 </script>
+
+<style lang="less">
+@import "~@css/fn.less";
+.pagination_ctn {
+  text-align: center;
+  .el-pagination.is-background {
+    .btn-prev,
+    .btn-next {
+      @media (max-width: @md) {
+        .WH(30px);
+      }
+      .WH(50px);
+      background: #eee;
+      color: #999;
+      .el-icon {
+        font-size: 30px;
+        @media (max-width: @md) {
+          font-size: 16px;
+        }
+      }
+    }
+    li {
+      .WH(50px);
+      background: #eee;
+      color: #999;
+      line-height: 50px;
+      font-size: 30px;
+      border-radius: 5px;
+      font-style: italic;
+      @media (max-width: @md) {
+        .WH(30px);
+        font-size: 16px;
+        line-height: 30px;
+      }
+    }
+    li:not(.disabled).active,
+    li:not(.disabled):hover {
+      background: #eee;
+      color: #ff0051;
+      font-weight: 800;
+    }
+  }
+}
+</style>

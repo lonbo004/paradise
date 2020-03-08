@@ -78,7 +78,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["isLogin", "siteData"]),////test siteData
+    ////test
+    ...mapState(["siteData"]),
+    ////
+    ...mapState(["isLogin"]),
     ...mapGetters(["siteInfo", "MarqueeList"]),
     login_show: {
       get() { return this.$store.state.login_show; },

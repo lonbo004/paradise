@@ -7,9 +7,9 @@
         符合條件的結果
         <span>{{count}}</span> 筆
       </div>
-      <div class="kw_box fx fw jcsb me_fill">
+      <MeLayout>
         <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
-      </div>
+      </MeLayout>
       <div class="kw_p_box" v-if="me_list.length">
         <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="getData" />
       </div>
@@ -20,10 +20,11 @@
 <script>
 import { Lady_Keywords_Search } from "@/api";
 //components
+import MeLayout from "@c/MeLayout";
 import MeCard from "@c/MeCard";
 import pagination from "@c/pagination";
 export default {
-  components: { MeCard, pagination },
+  components: { MeLayout, MeCard, pagination },
   data() {
     return {
       count: 0,
