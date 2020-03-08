@@ -34,9 +34,6 @@ export default {
       keyword: ""
     }
   },
-  mounted() {
-
-  },
   methods: {
     getData() {
       Lady_Keywords_Search(this.keyword, this.page, this.page_range).then(res => {

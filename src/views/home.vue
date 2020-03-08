@@ -39,7 +39,7 @@
         <div class="menu_title type_title fx aic">
           <span class="_town">{{currentTown_name}}{{district.district_name}}</span>
           <span class="_type _fill">定點</span>
-          <span class="_more">更多定點 >></span>
+          <span class="_more" @click="toPage('town_local', district)">更多定點 >></span>
         </div>
         <MeLayout>
           <MeCard :class="'_home'" v-for="item in district.LadyList" :meInfo="item" />
@@ -52,7 +52,7 @@
         <div class="menu_title type_title fx aic">
           <span class="_town">{{currentTown_name}}</span>
           <span class="_type _fill">外約</span>
-          <span class="_more">更多外約 >></span>
+          <span class="_more" @click="toPage('town_local')">更多外約 >></span>
         </div>
         <MeLayout>
           <MeCard :class="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
@@ -123,9 +123,15 @@ export default {
         })
       }
     },
-    toPage(page) {
+    toPage(page, val) {
       if (page === "top") {
         this.$router.push({ path: `/${this.SiteCode}/top/${this.sd_TownList}` })
+      }
+      else if (page === "town_local") {
+        this.$router.push({ path: `/${this.SiteCode}/town/${this.sd_TownList}/${val.district_code}/-1/-1` })
+      }
+      else if (page === "town_outside") {
+        this.$router.push({ path: `/${this.SiteCode}/town/${this.sd_TownList}/-1/-1/-1` })
       }
     }
   }

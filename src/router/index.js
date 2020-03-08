@@ -20,6 +20,11 @@ const routes = [
     component: () => import('../views/top.vue'),
   },
   {
+    path: '/:SiteCode/town/:townCode/:districtCode/:countryCode/:serviceType',
+    name: 'top',
+    component: () => import('../views/town.vue'),
+  },
+  {
     path: '/:SiteCode/escort/:townCode',
     name: 'escort',
     component: () => import('../views/escort.vue'),

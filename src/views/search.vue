@@ -161,7 +161,13 @@ export default {
   },
   methods: {
     getData() {
-      Lady_Search(this.params).then(res => {
+      let _params = JSON.parse(JSON.stringify(this.params));
+      for (let key in _params) {
+        if (Array.isArray(_params[key])) {
+          _params[key] = _params[key].toString();
+        }
+      }
+      Lady_Search(_params).then(res => {
         this.page = 1;
         this.me_list = res.LadyList;
         this.count = res.count;
