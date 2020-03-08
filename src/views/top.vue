@@ -1,6 +1,6 @@
 <template>
   <div class="top_frame">
-    <div class="top_ctn ctn0">
+    <div class="top_ctn">
       <div class="br_arc"></div>
       <div class="top_layout fx">
         <div class="top_town">

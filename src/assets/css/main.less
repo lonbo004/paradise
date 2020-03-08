@@ -6,9 +6,13 @@ body{
 #app{
   
 }
+.space_frame{
+  .ctn(@maxW);
+}
 .h_frame{
   .h_ctn{
     .bc(@main);
+    .ctn(@maxW);
     &._head{
       .P_tb(10px);
       .title{
@@ -102,9 +106,6 @@ body{
     }
   }
 }
-.h_fill{
-  
-}
 .f_frame{
   position: fixed;
   bottom: 0;
@@ -113,6 +114,7 @@ body{
   height: 80px;
   z-index: 99;
   .f_ctn {
+    .ctn(@maxW);
     .bc(#f0f0f0);
     height: 100%;
     border-top: 3px solid @main;
@@ -322,16 +324,6 @@ body{
     .bc(@main);
     @media(max-width: @md){
       font-size: 30px;
-    }
-  }
-  .kw_count{
-    font-size: 24px;
-    padding: 20px 2%;
-    @media(max-width: @sm){
-      font-size: 20px;
-    }
-    span{
-      color: @main;
     }
   }
   .kw_box{
@@ -630,12 +622,13 @@ body{
 }
 .search_frame {
   .search_ctn {
-    .bc( #f0f0f0);
+    .bc(#f0f0f0);
+    padding: 20px 2%;
   }
   .el-form-item {
     @media (max-width: @sm) {
       margin-bottom: 15px;
-      }
+    }
   }
   .submit {
     display: block;
@@ -649,40 +642,38 @@ body{
     padding: 0;
   }
   .search_title {
-    .W_H(100%,80px);
+    .W_H(100%, 80px);
     .bc(@f);
     line-height: 80px;
     font-size: 24px;
     color: #333;
     padding-left: 40px;
-    @media (max-width: @md) { 
-       .W_H(100%,50px);
+    @media (max-width: @md) {
+      .W_H(100%, 50px);
       line-height: 40px;
       font-size: 18px;
       padding-left: 20px;
     }
   }
-  .el-input__suffix{
+  .el-input__suffix {
     .bc(@f);
     z-index: 8;
     right: 0;
   }
   .search_form {
-    .W_H(90%,auto);
-    margin: 0 auto;
-    margin-top: 25px;
+    padding: 20px 2%;
     .form_label {
       .el-form-item__content {
         line-height: 36px;
         margin-left: 140px;
-        @media (max-width: @md) { 
+        @media (max-width: @md) {
           margin-left: 0px;
-       }
+        }
       }
     }
     .el-form-item__label {
-      .W_H(140px,38px);
-      .bc(#FBFBFB);
+      .W_H(140px, 38px);
+      .bc(#fbfbfb);
       color: #000;
       padding: 8px 15px;
       line-height: 20px;
@@ -693,29 +684,29 @@ body{
       white-space: nowrap;
       text-overflow: ellipsis;
       display: inline-block;
-      @media (max-width: @md) { 
+      @media (max-width: @md) {
         .bc(@main);
         color: @f;
-     }
-     @media (max-width: @sm) {
-      width: 100%;
+      }
+      @media (max-width: @sm) {
+        width: 100%;
       }
     }
     .type_input {
       display: inline-block;
-      .W_H(100%,38px);
+      .W_H(100%, 38px);
       border: 1px solid #e6e6e6;
       max-width: 157px;
       margin-right: 10px;
       vertical-align: top;
       margin-left: -1px;
       overflow: hidden;
-      @media (max-width: @md) { 
+      @media (max-width: @md) {
         display: block;
         max-width: unset;
         height: auto;
         border: 0;
-     }
+      }
       .el-input__inner {
         line-height: 36px;
         height: 36px;
@@ -728,9 +719,9 @@ body{
           .WH(100%);
           border: 0;
           padding-left: 10px;
-          @media (max-width: @md) { 
+          @media (max-width: @md) {
             height: 36px;
-         }
+          }
         }
       }
     }
@@ -802,11 +793,9 @@ body{
 }
 .search_from_select {
   .sp_option {
-    .el-select-dropdown__item {
-      width: 50%;
-      &.hover {
-        background-color: transparent;
-      }
+    span{
+      padding: 5px 10px;
+      .cp();
     }
   }
   .el-select__tags {
@@ -815,6 +804,21 @@ body{
     }
     .el-tag__close {
       display: none;
+    }
+    .el-tag{
+      color: #333;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+      height: auto;
+      &:not(:last-child){
+        margin-right: 3px;
+        &::after{
+          content: ",";
+        }
+      }
     }
   }
   .el-checkbox {

@@ -1,9 +1,9 @@
 <template>
   <div class="kw_frame">
-    <div class="kw_ctn ctn0">
+    <div class="kw_ctn">
       <div class="kw_ttl">搜尋結果</div>
       <div class="br_arc"></div>
-      <div class="kw_count">
+      <div class="count_ttl">
         符合條件的結果
         <span>{{count}}</span> 筆
       </div>

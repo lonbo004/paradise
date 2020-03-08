@@ -1,6 +1,6 @@
 <template>
   <div class="escort_frame">
-    <div class="escort_ctn ctn0">
+    <div class="escort_ctn">
       <div class="br_arc"></div>
       <div class="escort_tab">
         <span @click="tab = 'all'" :class="{active : tab === 'all'}">全方位</span> |

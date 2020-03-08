@@ -2,11 +2,7 @@
 .bs{
   box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 }
-.ctn0{
-  .ctn(@maxW);
-}
 .ctn1{
-  .ctn(@maxW);
   padding: 0 2%;
 }
 .btn1{
@@ -33,6 +29,22 @@
       height: 20px;
     }
   }
+}
+//搜尋條件結果
+.count_ttl{
+  font-size: 24px;
+  padding: 20px 2%;
+  .bc(@f);
+  @media(max-width: @sm){
+    font-size: 20px;
+  }
+  span{
+    color: @main;
+  }
+}
+//el
+.el-select-dropdown__item.selected{
+  color: @main;
 }
 //animetion
 @keyframes fadeIn {

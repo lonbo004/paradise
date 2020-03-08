@@ -26,9 +26,10 @@
           </marquee-text>
         </div>
       </div>
-      <div class="h_fill"></div>
     </template>
-    <router-view v-if="siteReady" />
+    <div class="space_frame">
+      <router-view v-if="siteReady" />
+    </div>
     <template v-if="SiteCode">
       <div class="f_fill"></div>
       <div class="f_frame">

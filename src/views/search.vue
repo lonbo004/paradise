@@ -1,16 +1,21 @@
 <template>
-  <div class="search_frame ctn0">
-    <div class="search_ctn" v-if="me_list.length">
-      <div class="search_title">使用進階組合搜尋（*不填則搜尋所有）：</div>
-      <MeLayout>
-        <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
-      </MeLayout>
-      <div>
-        <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="getData" />
-      </div>
+  <div class="search_frame">
+    <div class="count_ttl" v-show="isgetData">
+      符合條件的結果
+      <span>{{count}}</span> 筆
     </div>
     <div class="search_ctn">
-      <div class="search_title">使用進階組合搜尋（*不填則搜尋所有）：</div>
+      <template v-if="me_list.length">
+        <MeLayout>
+          <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
+        </MeLayout>
+        <div>
+          <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="getData" />
+        </div>
+      </template>
+    </div>
+    <div class="search_title">使用進階組合搜尋（*不填則搜尋所有）：</div>
+    <div class="search_ctn">
       <div class="search_form">
         <el-form>
           <el-row>
@@ -28,14 +33,14 @@
             </el-col>
             <el-col :sm="8">
               <el-form-item class="form_label" label="服務地區">
-                <el-select class="type_input search_from_select" multiple placeholder="請選擇服務地區" popper-class="search_from_select">
-                  <div class="fx sp_option">
+                <el-select class="type_input search_from_select" v-model="params.district_code" multiple remove-tag placeholder="請選擇服務地區" popper-class="search_from_select">
+                  <div class="sp_option fx jcsa">
                     <span @click="sp_district_code('all')">全選</span>
                     <span @click="sp_district_code('clear')">清除</span>
                   </div>
                   <el-option :label="item.Name" :value="item.Code" v-for="item in DistrictList">
                     <el-checkbox-group class="check_group" v-model="params.district_code">
-                      <el-checkbox :label="item.Code">{{item.Name}}</el-checkbox>
+                      <el-checkbox :label="item.Code" @click.native.stop>{{item.Name}}</el-checkbox>
                     </el-checkbox-group>
                   </el-option>
                 </el-select>
@@ -148,6 +153,7 @@ export default {
       },
       sd_TownList: undefined,
       DistrictList: [],
+      isgetData: false,
     }
   },
   computed: {
@@ -155,10 +161,13 @@ export default {
   },
   methods: {
     getData() {
-      Lady_Search(params).then(res => {
+      Lady_Search(this.params).then(res => {
         this.page = 1;
         this.me_list = res.LadyList;
         this.count = res.count;
+      }).finally(() => {
+        this.isgetData = true;
+        document.getElementsByTagName("html")[0].scrollTop = 0;
       })
     },
     sp_district_code(type) {

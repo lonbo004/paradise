@@ -1,5 +1,5 @@
 <template>
-  <div class="t_search_frame ctn0">
+  <div class="t_search_frame">
     <div class="br_arc"></div>
     <div class="t_search_ctn">
       <div class="t_s_total">

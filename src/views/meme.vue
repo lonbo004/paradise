@@ -1,5 +1,5 @@
 <template>
-  <div class="meme_frame ctn0">
+  <div class="meme_frame">
     <div class="meme_ctn">
       <div class="banner_frame">
         <div class="banner_ctn">

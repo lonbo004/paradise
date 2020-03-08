@@ -1,5 +1,5 @@
 <template>
-  <div class="home_frame ctn0">
+  <div class="home_frame">
     <div class="banner_frame">
       <div class="banner_ctn _slick">
         <slick v-if="siteInfo.Carousel" ref="slick" :options="slickOptions" @reInit="reInit">
