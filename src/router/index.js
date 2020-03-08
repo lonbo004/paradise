@@ -20,6 +20,11 @@ const routes = [
     component: () => import('../views/top.vue'),
   },
   {
+    path: '/:SiteCode/escort/:townCode',
+    name: 'escort',
+    component: () => import('../views/escort.vue'),
+  },
+  {
     path: '/:SiteCode/meme/:code',
     name: 'meme',
     component: () => import('../views/meme.vue'),

@@ -18,11 +18,17 @@
   text-align: center;
   .el-pagination.is-background {
     .btn-prev, .btn-next {
+      @media (max-width: @md) {
+        .WH(30px);
+      }
       .WH(50px);
       background: #eee;
       color: #999;
       .el-icon {
         font-size: 30px;
+        @media (max-width: @md) {
+          font-size: 16px;
+        }
       }
     }
     li {
@@ -33,6 +39,11 @@
       font-size: 30px;
       border-radius: 5px;
       font-style: italic;
+      @media (max-width: @md) {
+        .WH(30px);
+        font-size: 16px;
+        line-height: 30px;
+      }
     }
     li:not(.disabled).active, li:not(.disabled):hover {
       background: #eee;
@@ -44,8 +55,7 @@
 
 .side_city_btn {
   cursor: pointer;
-  width: 125px;
-  height: 50px;
+  .W_H(125px,50px);
   text-align: center;
   font-size: 24px;
   color: #666;
@@ -53,7 +63,14 @@
   margin: 0 auto;
   font-weight: 600;
   margin-bottom: 10px;
-  &:hover {
+  @media (max-width:@md) {
+    .W_H(70%,20px);
+    width: 70%;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 5px;
+  }
+  &:hover,&.active  {
     background: #ff2c59;
     border-radius: 50px;
     color: @f;
@@ -648,9 +665,6 @@
     position: relative;
   }
 
-  .t_s_content {
-
-  }
   .t_s_city {
     .W_H(190px, auto);
     padding: 25px 0;
@@ -668,5 +682,58 @@
     margin-top: 40px;
     border-top: 1px dotted #ccc;
     padding-top: 15px;
+  }
+}
+
+.escort_frame {
+  .escort_ctn {
+    .bc(@f);
+    .escort_tab{
+      .W_H(100%,120px);
+      .bc(@f);
+      font-size: 30px;
+      line-height: 120px;
+      font-weight: 600;
+      text-align: center;
+      @media(max-width: @md) {
+        height: 70px;
+        font-size: 20px;
+        line-height: 70px;
+      }
+      span {
+        cursor: pointer;
+        color: #999;
+        &.active {
+          color: @main;
+        }
+      }
+    }
+    .escort_content {
+      border-top: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    .escort_city {
+      .W_H(190px, auto);
+      padding: 25px 0;
+      @media(max-width: @md) {
+        width: 18%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    }
+    .escort_res {
+      width: 833px;
+      height: auto;
+      border-left: 1px solid #ddd;
+      padding-bottom: 30px;
+    }
+    .escort_box {
+      padding: 10px;
+      height: 40px;
+      text-align: center;
+      margin-top: 40px;
+      border-top: 1px dotted #ccc;
+      padding-top: 15px;
+    }
   }
 }
