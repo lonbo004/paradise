@@ -9,7 +9,7 @@
         <MeLayout>
           <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
         </MeLayout>
-        <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="getData" />
+        <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="()=>{getData(false)}" />
       </template>
     </div>
     <div class="search_title">使用進階組合搜尋（*不填則搜尋所有）：</div>

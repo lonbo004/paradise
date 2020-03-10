@@ -10,7 +10,7 @@
       <MeLayout>
         <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
       </MeLayout>
-      <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="getData" />
+      <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="()=>{getData(false)}" />
     </div>
   </div>
 </template>
