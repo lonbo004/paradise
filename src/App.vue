@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="minH100vh fx fdc">
     <template v-if="SiteCode">
       <div class="h_frame">
         <div class="h_ctn _head ctn1 clear" v-if="isHomePage">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </template>
-    <div class="space_frame">
+    <div class="space_frame _fill">
       <router-view v-if="siteReady" />
     </div>
     <template v-if="SiteCode">

@@ -42,6 +42,31 @@
     color: @main;
   }
 }
+//側欄城市按鈕
+.s_town_btn {
+  .cp();
+  width: 90%;
+  .ctn(120px);
+  text-align: center;
+  font-size: 24px;
+  color: #666;
+  margin: 0 auto 10px;
+  font-weight: bold;
+  padding: 10px 0;
+  @media (max-width:@md) {
+    font-size: 20px;
+    margin-bottom: 5px;
+    padding: 5px 0;
+  }
+  @media(max-width: @sm){
+    font-size: 14px;
+  }
+  &:hover,&.active  {
+    background: @main_deep;
+    border-radius: 50px;
+    color: @f;
+  }
+}
 //el
 .el-select-dropdown__item.selected{
   color: @main;

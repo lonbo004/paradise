@@ -52,7 +52,7 @@ export default {
   computed: {
     ...mapState(["SiteCode"]),
     photo() {
-      return this.meInfo && (this.meInfo.LadyFileList[0] || {}).path;
+      return this.meInfo && ((this.meInfo.LadyFileList || this.meInfo.EscortFileList)[0] || {}).path;
     },
     price() {
       const sl = this.meInfo.shorttime_local_final_price;
@@ -89,10 +89,21 @@ export default {
     margin-bottom: 10px;
   }
   &._top_home {
-    background-image: linear-gradient(180deg, #ffffff, #ffb2ff);
+    background-image: linear-gradient(180deg, #ffffff, @main);
+  }
+  &._top,
+  &._town,
+  &._es {
+    padding: 0;
+    ._list {
+      > div {
+        border: none;
+        padding: 0;
+      }
+    }
   }
   &._home {
-    .bc(#fec3b5);
+    .bc(@main_deep);
   }
   &._kw {
     padding: 0;
@@ -114,12 +125,12 @@ export default {
     }
   }
   ._data {
-    padding: 10px;
+    padding: 20px 10px;
     .bc(@f);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    @media (min-width: @up_sm) {
-      padding-bottom: 20px;
+    @media (min-width: @sm) {
+      padding-bottom: 10px;
     }
   }
   ._name {
@@ -127,6 +138,7 @@ export default {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
+    line-height: 1;
     @media (max-width: @sm) {
       font-size: 20px;
       margin-bottom: 5px;
@@ -150,7 +162,6 @@ export default {
         color: #999999;
         &._price {
           color: @main;
-          font-size: 80%;
           font-style: italic;
           @media (max-width: @sm) {
             font-size: 100%;

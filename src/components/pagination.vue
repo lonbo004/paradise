@@ -61,7 +61,6 @@ export default {
 @import "~@css/fn.less";
 #app .el-pagination.is-background {
   text-align: center;
-  padding: 20px 0 0;
   .btn-prev,
   .btn-next {
     @media (max-width: @md) {
@@ -94,7 +93,7 @@ export default {
   li:not(.disabled).active,
   li:not(.disabled):hover {
     background: #eee;
-    color: #ff0051;
+    color: @main_deep;
     font-weight: 800;
   }
 }
