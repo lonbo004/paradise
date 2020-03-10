@@ -12,12 +12,24 @@ export function GetInfo() {
     data
   })
 }
-export function Member_Login(account, password) {
+export function Member_Login({ account, password }) {
   return axiosProxy({
     url: "/ParadiseApi/Api_Member_Login",
     method: "post",
     data: {
       account, password
+    }
+  })
+}
+export function Member_Create({ account, password, name }) {
+  return axiosProxy({
+    url: "/ParadiseApi/Api_Member_Create",
+    method: "post",
+    data: {
+      site_code: store.state.SiteCode,
+      account,
+      password,
+      name
     }
   })
 }
@@ -94,7 +106,7 @@ export function Lady_Search({
     }
   })
 }
-export function Api_Message_Create(cotents) {
+export function Message_Create(cotents) {
   return axiosProxy({
     url: "/ParadiseApi/Api_Message_Create",
     method: "post",
@@ -108,7 +120,7 @@ export function Api_Message_Create(cotents) {
     }
   })
 }
-export function Api_Score_Create(face, attitude, body, skill) {
+export function Score_Create(face, attitude, body, skill) {
   return axiosProxy({
     url: "/ParadiseApi/Api_Score_Create",
     method: "post",

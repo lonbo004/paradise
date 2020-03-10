@@ -145,8 +145,8 @@
             </div>
           </div>
           <div class="fx comment_from" v-if="isLogin">
-            <input type="text" v-model="cotents" placeholder="發表我的評價" @keypress.enter="Api_Message_Create" />
-            <div class="comment_btn" @click="Api_Message_Create">評價</div>
+            <input type="text" v-model="cotents" placeholder="發表我的評價" @keypress.enter="Message_Create" />
+            <div class="comment_btn" @click="Message_Create">評價</div>
           </div>
         </div>
       </div>
@@ -158,7 +158,7 @@
 import { mapState, mapGetters } from "vuex";
 import slick from "vue-slick";//initialSlide
 //api
-import { Lady_GetOne, Api_Message_Create, Api_Score_Create } from "@/api";
+import { Lady_GetOne, Message_Create, Score_Create } from "@/api";
 export default {
   components: { slick },
   data() {
@@ -196,12 +196,12 @@ export default {
   },
   methods: {
     memeRating() {
-      Api_Score_Create(this.face_point, this.attitude_point, this.body_point, this.skill_point).then(res => {
+      Score_Create(this.face_point, this.attitude_point, this.body_point, this.skill_point).then(res => {
         this.getData();
       })
     },
-    Api_Message_Create() {
-      Api_Message_Create(this.cotents).then(res => {
+    Message_Create() {
+      Message_Create(this.cotents).then(res => {
         this.cotents = "";
         this.getData();
       })

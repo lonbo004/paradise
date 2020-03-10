@@ -5,6 +5,8 @@ import store from './store';
 Vue.config.productionTip = false;
 //base
 import base from '@js/base';
+//mixins
+import alert from '@mix/alert';
 //vue-slick
 //=>https://github.com/kenwheeler/slick#readme
 //=>https://www.npmjs.com/package/vue-slick
@@ -25,6 +27,7 @@ import MarqueeText from 'vue-marquee-text-component';
 Vue.component('marquee-text', MarqueeText);
 
 new Vue({
+  mixins: [alert],
   router,
   store,
   render: h => h(App)

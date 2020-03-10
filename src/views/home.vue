@@ -79,7 +79,9 @@ export default {
   data() {
     return {
       slickOptions: {
-        dots: true
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 4000
       },
       sd_TownList: "",
       LeaderBoard_LadyList: [],
