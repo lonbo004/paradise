@@ -125,3 +125,12 @@ export function Api_Score_Create(face, attitude, body, skill) {
     }
   })
 }
+export function Escort_Search(type, page, page_range) {
+  return axiosProxy({
+    url: "/ParadiseApi/Escort_Search",
+    method: "post",
+    data: {
+      type, page, page_range
+    }
+  })
+}

@@ -15,17 +15,17 @@ const routes = [
     component: () => import('../views/keyword.vue'),
   },
   {
-    path: '/:SiteCode/top/:townCode',
+    path: '/:SiteCode/top/:town_code',
     name: 'top',
     component: () => import('../views/top.vue'),
   },
   {
-    path: '/:SiteCode/town/:townCode/:districtCode/:countryCode/:serviceType',
+    path: '/:SiteCode/town/:town_code/:district_code/:country_code/:service_type_code',
     name: 'top',
     component: () => import('../views/town.vue'),
   },
   {
-    path: '/:SiteCode/escort/:townCode',
+    path: '/:SiteCode/escort',
     name: 'escort',
     component: () => import('../views/escort.vue'),
   },
