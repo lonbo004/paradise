@@ -1,6 +1,6 @@
 <template>
   <div class="search_frame">
-    <div class="count_ttl" v-show="isgetData">
+    <div class="count_ttl" v-show="isGetData">
       符合條件的結果
       <span>{{count}}</span> 筆
     </div>
@@ -9,9 +9,7 @@
         <MeLayout>
           <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
         </MeLayout>
-        <div>
-          <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="getData" />
-        </div>
+        <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="getData" />
       </template>
     </div>
     <div class="search_title">使用進階組合搜尋（*不填則搜尋所有）：</div>
@@ -110,7 +108,7 @@
             </el-col>
             <el-col :sm="24">
               <el-form-item>
-                <el-button @click="getData" class="submit">送出</el-button>
+                <el-button @click="getData(true)" class="submit">送出</el-button>
               </el-form-item>
             </el-col>
           </el-row>
@@ -153,14 +151,15 @@ export default {
       },
       sd_TownList: undefined,
       DistrictList: [],
-      isgetData: false,
+      isGetData: false,
     }
   },
   computed: {
     ...mapGetters(["siteInfo", "TownList", "CountryList", "EnvironmentList", "CupList", "ServiceTypeList", "ServiceModeList", "AllowServiceList"]),
   },
   methods: {
-    getData() {
+    getData(isNewSearch) {
+      if (isNewSearch) this.params.page = 1;
       let _params = JSON.parse(JSON.stringify(this.params));
       for (let key in _params) {
         if (Array.isArray(_params[key])) {
@@ -168,11 +167,10 @@ export default {
         }
       }
       Lady_Search(_params).then(res => {
-        this.page = 1;
         this.me_list = res.LadyList;
         this.count = res.count;
       }).finally(() => {
-        this.isgetData = true;
+        this.isGetData = true;
         document.getElementsByTagName("html")[0].scrollTop = 0;
       })
     },
@@ -183,7 +181,7 @@ export default {
       else if (type === "clear") {
         this.params.district_code.splice(0);
       }
-    }
+    },
   },
   watch: {
     sd_TownList: {

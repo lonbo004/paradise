@@ -21,19 +21,19 @@
           <el-option v-for="item in ServiceTypeList" :label="item.Name" :value="item.Code"></el-option>
         </el-select>
       </div>
-      <div class="fx t_s_content">
-        <div class="t_s_city">
-          <div class="side_city_btn" v-for="item in TownList">{{item.Name}}</div>
-        </div>
-        <div class="t_s_res">
+      <SideLayout>
+        <template slot="side">
+          <div class="s_town_btn" v-for="item in TownList" :class="{active: item.Code === params.town_code}" @click="sp_town_code('sd',item.Code)">{{item.Name}}</div>
+        </template>
+        <template slot="body">
           <MeLayout>
-            <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
+            <MeCard :class="'_town'" v-for="(item,index) in me_list" :meInfo="item" />
           </MeLayout>
-          <div class="t_s_box">
-            <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="getData" />
-          </div>
-        </div>
-      </div>
+        </template>
+        <template slot="pagination" v-if="me_list.length">
+          <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="getData" />
+        </template>
+      </SideLayout>
     </div>
   </div>
 </template>
@@ -44,24 +44,25 @@ import { mapState, mapGetters } from "vuex";
 import { Lady_Search } from "@/api";
 //components
 import MeLayout from "@c/MeLayout";
+import SideLayout from "@c/SideLayout";
 import MeCard from "@c/MeCard";
 import pagination from "@c/pagination";
 export default {
-  components: { MeLayout, MeCard, pagination },
+  components: { SideLayout, MeLayout, MeCard, pagination },
   data() {
     return {
       me_list: [],
       count: 0,
       params: {
-        town_code: "",
-        district_code: "",
-        country_code: "",
-        service_type_code: ""
+        town_code: this.$route.params.town_code,
+        district_code: this.$route.params.district_code,
+        country_code: this.$route.params.country_code,
+        service_type_code: this.$route.params.service_type_code
       },
       page: 1,
       page_range: 10,
       DistrictList: [],
-      ready: false,
+      ready: true,
     }
   },
   computed: {
@@ -69,17 +70,12 @@ export default {
     ...mapGetters(["siteInfo", "TownList", "CountryList", "ServiceTypeList"]),
   },
   created() {
-    this.DistrictList = this.TownList.find(x => x.Code === this.$route.params.townCode).DistrictList;
-  },
-  mounted() {
-    this.params.town_code = this.$route.params.townCode;
-    this.params.district_code = this.$route.params.districtCode;
-    this.params.country_code = this.$route.params.countryCode;
-    this.params.service_type_code = this.$route.params.serviceType;
-    this.ready = true;
+    this.DistrictList = this.TownList.find(x => x.Code === this.params.town_code).DistrictList;
   },
   methods: {
-    getData() {
+    getData(isNewSearch) {
+      if (!this.ready) return false;
+      if (isNewSearch) this.page = 1;
       let _params = JSON.parse(JSON.stringify(this.params));
       for (let key in _params) {
         if (_params[key] == -1) {
@@ -89,25 +85,33 @@ export default {
       _params.page = this.page;
       _params.page_range = this.page_range;
       Lady_Search(_params).then(res => {
-        this.page = 1;
         this.me_list = res.LadyList;
         this.count = res.count;
       }).finally(() => {
         document.getElementsByTagName("html")[0].scrollTop = 0;
       })
+    },
+    sp_town_code(type, val) {
+      if (type === "sd") {
+        this.ready = false;
+        this.params.town_code = val;
+        this.params.district_code = "-1";
+        this.DistrictList = this.TownList.find(x => x.Code === this.params.town_code).DistrictList;
+        this.ready = true;
+        this.getData(true);
+      }
     }
   },
   watch: {
     params: {
       handler(val) {
-        if (!this.ready) return false;
         this.$router.replace({ path: `/${this.SiteCode}/town/${this.params.town_code}/${this.params.district_code}/${this.params.country_code}/${this.params.service_type_code}` })
       },
       deep: true
     },
     $route: {
       handler(val) {
-        this.getData();
+        this.getData(true);
       },
       deep: true,
       immediate: true
@@ -115,3 +119,8 @@ export default {
   }
 };
 </script>
+<style lang="less">
+.s_head {
+  padding: 0 !important;
+}
+</style>
