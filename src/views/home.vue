@@ -26,7 +26,7 @@
         <div class="menu_title phb_title">
           <img class="phb" src="@img/phb.jpg" />
           <span class="_1">排行榜 約妹真實評價，請勿洗分，違規者予以封鎖。</span>
-          <span class="_2" @click="toPage('top')">更多排行 >></span>
+          <!-- <span class="_2" @click="toPage('top')">更多排行 >></span> -->
         </div>
         <MeLayout>
           <MeCard :class="'_top_home'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" />
