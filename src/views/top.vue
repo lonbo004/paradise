@@ -12,7 +12,7 @@
           </MeLayout>
         </template>
         <template slot="pagination" v-if="me_list.length">
-          <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="getData" />
+          <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="()=>{getData(false)}" />
         </template>
       </SideLayout>
     </div>

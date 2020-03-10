@@ -31,7 +31,7 @@
           </MeLayout>
         </template>
         <template slot="pagination" v-if="me_list.length">
-          <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="getData" />
+          <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="()=>{getData(false)}" />
         </template>
       </SideLayout>
     </div>
@@ -74,6 +74,7 @@ export default {
   },
   methods: {
     getData(isNewSearch) {
+      console.log(11111,isNewSearch,this.ready)
       if (!this.ready) return false;
       if (isNewSearch) this.page = 1;
       let _params = JSON.parse(JSON.stringify(this.params));
@@ -84,6 +85,7 @@ export default {
       }
       _params.page = this.page;
       _params.page_range = this.page_range;
+      console.log(454646,_params)
       Lady_Search(_params).then(res => {
         this.me_list = res.LadyList;
         this.count = res.count;
