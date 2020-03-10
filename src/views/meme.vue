@@ -73,7 +73,7 @@
       </div>
       <div class="meme_info">
         <div class="meme_file fx fw jcsb">
-          <div class="file_box" v-for="item in currentMe.LadyFileList">
+          <div class="file_box" v-for="item in currentMe.FileList">
             <template v-if="/^image/.test(item.filetype)">
               <img :src="item.path" />
             </template>
@@ -187,7 +187,7 @@ export default {
       return total
     },
     photo() {
-      return ((this.currentMe.LadyFileList || [])[0] || {}).path;
+      return ((this.currentMe.FileList || [])[0] || {}).path;
     },
     MMT: () => MMT
   },
