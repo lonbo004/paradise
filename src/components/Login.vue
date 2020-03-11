@@ -8,7 +8,7 @@
           <div class="_login" v-show="isLoginPage">
             <input type="text" v-model="login.account" placeholder="帳號" />
             <input type="password" v-model="login.password" placeholder="密碼" />
-            <div class="l_btn btn1" @click="Member_Login">登入</div>
+            <div class="l_btn btn1" @click="Member_Login(login.account,login.password)">登入</div>
           </div>
           <div class="_signup" v-show="!isLoginPage">
             <input type="text" v-model="signup.account" placeholder="帳號" />
@@ -66,8 +66,8 @@ export default {
   },
   ////
   methods: {
-    Member_Login() {
-      Member_Login(this.login).then(res => {
+    Member_Login(account, password) {
+      Member_Login(account, password).then(res => {
         if (res) {
           this.$store.state.memberData = res;
           sessionStorage.setItem("token", res.token);
@@ -89,7 +89,10 @@ export default {
       if (this.signup.password !== this.signup.password2)
         return this.$root.m_error("密碼不一致");
       Member_Create(this.signup).then(res => {
-
+        if (res === "success") {
+          alert("註冊成功!");
+          this.Member_Login(this.signup.account, this.signup.password);
+        }
       })
     }
   },

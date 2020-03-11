@@ -62,6 +62,7 @@
     <Login v-if="login_show" />
     <!-- awt -->
     <GetInfoVue v-if="SiteCode" :SiteCode="SiteCode" :callback="clear" />
+    <GetInfoVue v-if="isLogin" :SiteCode="SiteCode" :callback="clear" />
   </div>
 </template>
 

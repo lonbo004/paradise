@@ -225,14 +225,11 @@ body{
     justify-content: center;
     .WH(90px);
     .bc(#f2f2f2);
-    border-radius: 50%;
+    border-radius: 10px;
     font-size: 30px;
     color: #999;
     .cp();
     margin: 0 8px 15px;
-    @media(max-width: @sm){
-      margin: 0 5px 10px;
-    }
     font-weight: bold;
     &.active, &:hover{
       color: @f;
@@ -241,6 +238,10 @@ body{
     @media(max-width: @md){
       .WH(70px);
       font-size: 20px;
+    }
+    @media(max-width: @sm){
+      .WH(18VW);
+      margin: 0 5px 10px;
     }
   }
 }

@@ -21,7 +21,7 @@ const routes = [
   },
   {
     path: '/:SiteCode/town/:town_code/:district_code/:country_code/:service_type_code',
-    name: 'top',
+    name: 'town',
     component: () => import('../views/town.vue'),
   },
   {
@@ -36,7 +36,7 @@ const routes = [
   },
   {
     path: '/:SiteCode/search',
-    name: 'meme',
+    name: 'search',
     component: () => import('../views/search.vue'),
   },
   {

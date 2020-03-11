@@ -12,7 +12,7 @@ export function GetInfo() {
     data
   })
 }
-export function Member_Login({ account, password }) {
+export function Member_Login(account, password) {
   return axiosProxy({
     url: "/ParadiseApi/Api_Member_Login",
     method: "post",
