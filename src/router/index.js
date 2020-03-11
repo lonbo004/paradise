@@ -35,6 +35,11 @@ const routes = [
     component: () => import('../views/meme.vue'),
   },
   {
+    path: '/:SiteCode/esme/:code',
+    name: 'esme',
+    component: () => import('../views/esme.vue'),
+  },
+  {
     path: '/:SiteCode/search',
     name: 'search',
     component: () => import('../views/search.vue'),

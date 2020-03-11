@@ -8,64 +8,14 @@
               <img :src="photo" />
             </div>
             <div class="_data _fill">
-              <div class="_num">
-                編號:
-                <span>{{currentMe.id}}</span>
-              </div>
               <div class="_name">{{currentMe.name}}</div>
               <div class="_list fx fw">
-                <div class="_50">
-                  國别:
-                  <span>{{currentMe.country_name}}</span>
-                </div>
-                <div class="_50">
-                  年齡:
-                  <span>{{currentMe.age}}</span>
-                </div>
-                <div class="_50">
-                  身高:
-                  <span>{{currentMe.height}}</span>
-                </div>
-                <div class="_50">
-                  體重:
-                  <span>{{currentMe.weight}}</span>
-                </div>
-                <div class="_50">
-                  罩杯:
-                  <span>{{currentMe.cup}}</span>
-                </div>
-                <div class="_50">
-                  環境:
-                  <span>{{currentMe.environment_name}}</span>
-                </div>
-                <div>
-                  類型:
-                  <span>{{currentMe.service_type_name}}</span>
-                </div>
-                <div class="_50">
-                  <template v-if="currentMe.longtime_local_final_price">
-                    定點長鐘:
-                    <span class="_price">{{currentMe.longtime_local_final_price}}</span>
-                  </template>
-                </div>
-                <div class="_50">
-                  <template v-if="currentMe.longtime_outside_final_price">
-                    外約長鐘:
-                    <span class="_price">{{currentMe.longtime_outside_final_price}}</span>
-                  </template>
-                </div>
-                <div class="_50">
-                  <template v-if="currentMe.shorttime_local_final_price">
-                    定點短鐘:
-                    <span class="_price">{{currentMe.shorttime_local_final_price}}</span>
-                  </template>
-                </div>
-                <div class="_50">
-                  <template v-if="currentMe.shorttime_outside_final_price">
-                    外約短鐘:
-                    <span class="_price">{{currentMe.shorttime_outside_final_price}}</span>
-                  </template>
-                </div>
+                <template v-for="row in templateList">
+                  <div v-for="item in row" :class="{_50: row.length>1}">
+                    {{item.label}}
+                    <span :class="item.value_css">{{item.value}}</span>
+                  </div>
+                </template>
               </div>
             </div>
           </div>
@@ -110,24 +60,28 @@
         </div>
         <div class="meme_star">
           <div class="fx aic total_start">
-            <div class="score">{{totalScore * 2}}</div>
-            <el-rate v-model="totalScore" disabled score-template="{totalScore}"></el-rate>
+            <div class="score">{{total_point}}</div>
+            <el-rate v-model="re_total_point" disabled></el-rate>
           </div>
           <div class="fx reta_item">
             <span>外貌：</span>
-            <el-rate v-model="ratingGrup.face_point" allow-half show-score text-color="#6bc414"></el-rate>
+            <el-rate v-model="re_face_point" allow-half></el-rate>
+            <span class="_score">{{face_point}}</span>
           </div>
           <div class="fx reta_item">
             <span>態度：</span>
-            <el-rate v-model="ratingGrup.attitude_point" allow-half show-score text-color="#6bc414"></el-rate>
+            <el-rate v-model="re_attitude_point" allow-half></el-rate>
+            <span class="_score">{{attitude_point}}</span>
           </div>
           <div class="fx reta_item">
             <span>身材：</span>
-            <el-rate v-model="ratingGrup.body_point" allow-half show-score text-color="#6bc414"></el-rate>
+            <el-rate v-model="re_body_point" allow-half></el-rate>
+            <span class="_score">{{body_point}}</span>
           </div>
           <div class="fx reta_item">
             <span>技巧：</span>
-            <el-rate v-model="ratingGrup.skill_point" allow-half show-score text-color="#6bc414"></el-rate>
+            <el-rate v-model="re_skill_point" allow-half></el-rate>
+            <span class="_score">{{skill_point}}</span>
           </div>
           <div class="submit" v-if="isLogin" @click="memeRating">送出評分</div>
         </div>
@@ -164,30 +118,85 @@ export default {
   data() {
     return {
       cotents: '',
-      ratingGrup: {
-        face_point: 0,
-        attitude_point: 0,
-        body_point: 0,
-        skill_point: 0,
-      }
+      total_point: 0,
+      face_point: 0,
+      attitude_point: 0,
+      body_point: 0,
+      skill_point: 0,
     }
   },
   computed: {
     ...mapState(["isLogin", "memberData"]),
+    ...mapGetters(["siteInfo"]),
     currentMe: {
       get() { return this.$store.state.currentMe; },
       set(val) { this.$store.state.currentMe = val; }
     },
-    totalScore() {
-      let total = 0
-      let data = this.ratingGrup
-      for (let score in data) {
-        total = total + data[score] / 4
-      }
-      return total
+    re_total_point: {
+      get() { return this.total_point / 2; },
+      set(val) { this.total_point = val * 2; }
+    },
+    re_face_point: {
+      get() { return this.face_point / 2; },
+      set(val) { this.face_point = val * 2; }
+    },
+    re_attitude_point: {
+      get() { return this.attitude_point / 2; },
+      set(val) { this.attitude_point = val * 2; }
+    },
+    re_body_point: {
+      get() { return this.body_point / 2; },
+      set(val) { this.body_point = val * 2; }
+    },
+    re_skill_point: {
+      get() { return this.skill_point / 2; },
+      set(val) { this.skill_point = val * 2; }
     },
     photo() {
       return ((this.currentMe.FileList || [])[0] || {}).path;
+    },
+    templateList() {
+      let result = [];
+      function row(label, value) {
+        return { label, value }
+      }
+      result.push([
+        new row("國别:", this.currentMe.country_name),
+        new row("編號:", this.currentMe.id),
+      ]);
+      result.push([
+        new row("年齡:", this.currentMe.age),
+        new row("身高:", this.currentMe.height)
+      ]);
+      result.push([
+        new row("體重:", this.currentMe.weight),
+        new row("罩杯:", this.currentMe.cup)
+      ]);
+      result.push([
+        new row("環境:", this.currentMe.environment_name),
+        new row("類型:", this.currentMe.service_type_name)
+      ]);
+      result.push([
+        new row("長鐘時間:", this.currentMe.longtime),
+        new row("短鐘時間:", this.currentMe.shorttime)
+      ]);
+      if (this.siteInfo.ShowPrice) {
+        result.push([]);
+        if (this.currentMe.longtime_local_final_price) {
+          result[result.length - 1].push(new row("定點長鐘:", this.currentMe.longtime_local_final_price))
+        }
+        if (this.currentMe.longtime_outside_final_price) {
+          result[result.length - 1].push(new row("外約長鐘:", this.currentMe.longtime_outside_final_price))
+        }
+        result.push([]);
+        if (this.currentMe.shorttime_local_final_price) {
+          result[result.length - 1].push(new row("定點短鐘:", this.currentMe.shorttime_local_final_price))
+        }
+        if (this.currentMe.shorttime_outside_final_price) {
+          result[result.length - 1].push(new row("外約短鐘:", this.currentMe.shorttime_outside_final_price))
+        }
+      }
+      return result;
     },
     MMT: () => MMT
   },
@@ -210,6 +219,11 @@ export default {
       Lady_GetOne(this.$route.params.code).then(res => {
         if (res) {
           this.currentMe = res;
+          this.total_point = res.total_point;
+          this.face_point = res.face_point;
+          this.attitude_point = res.attitude_point;
+          this.body_point = res.body_point;
+          this.skill_point = res.skill_point;
         };
       })
     }
@@ -217,5 +231,6 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
+@import "~@c/MeCard/css.less";
 </style>

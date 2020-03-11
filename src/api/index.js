@@ -137,12 +137,22 @@ export function Score_Create(face, attitude, body, skill) {
     }
   })
 }
+//Escort
 export function Escort_Search(type, page, page_range) {
   return axiosProxy({
     url: "/ParadiseApi/Escort_Search",
     method: "post",
     data: {
       type, page, page_range
+    }
+  })
+}
+export function Escort_GetOne(code) {
+  return axiosProxy({
+    url: "/ParadiseApi/Escort_GetOne",
+    method: "post",
+    data: {
+      code
     }
   })
 }

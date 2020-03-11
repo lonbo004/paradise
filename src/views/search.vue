@@ -7,7 +7,7 @@
     <div class="search_ctn">
       <template v-if="me_list.length">
         <MeLayout>
-          <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
+          <MeCard :mode="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
         </MeLayout>
         <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="()=>{getData(false)}" />
       </template>
@@ -124,7 +124,7 @@ import { mapState, mapGetters } from "vuex";
 import { Lady_Search } from "@/api";
 //components
 import MeLayout from "@c/MeLayout";
-import MeCard from "@c/MeCard";
+import MeCard from "@c/MeCard/MeCard.vue";
 import pagination from "@c/pagination";
 export default {
   components: { MeLayout, MeCard, pagination },

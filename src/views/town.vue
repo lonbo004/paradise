@@ -27,7 +27,7 @@
         </template>
         <template slot="body">
           <MeLayout>
-            <MeCard :class="'_town'" v-for="(item,index) in me_list" :meInfo="item" />
+            <MeCard :mode="'_town'" v-for="(item,index) in me_list" :meInfo="item" />
           </MeLayout>
         </template>
         <template slot="pagination" v-if="me_list.length">
@@ -45,7 +45,7 @@ import { Lady_Search } from "@/api";
 //components
 import MeLayout from "@c/MeLayout";
 import SideLayout from "@c/SideLayout";
-import MeCard from "@c/MeCard";
+import MeCard from "@c/MeCard/MeCard.vue";
 import pagination from "@c/pagination";
 export default {
   components: { SideLayout, MeLayout, MeCard, pagination },
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     getData(isNewSearch) {
-      console.log(11111,isNewSearch,this.ready)
+      console.log(11111, isNewSearch, this.ready)
       if (!this.ready) return false;
       if (isNewSearch) this.page = 1;
       let _params = JSON.parse(JSON.stringify(this.params));
@@ -85,7 +85,7 @@ export default {
       }
       _params.page = this.page;
       _params.page_range = this.page_range;
-      console.log(454646,_params)
+      console.log(454646, _params)
       Lady_Search(_params).then(res => {
         this.me_list = res.LadyList;
         this.count = res.count;

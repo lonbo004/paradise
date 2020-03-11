@@ -29,7 +29,7 @@
           <!-- <span class="_2" @click="toPage('top')">更多排行 >></span> -->
         </div>
         <MeLayout>
-          <MeCard :class="'_top_home'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" />
+          <MeCard :mode="'_top_home'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" />
         </MeLayout>
       </div>
     </template>
@@ -42,7 +42,7 @@
           <span class="_more" @click="toPage('town_local', district)">更多定點 >></span>
         </div>
         <MeLayout>
-          <MeCard :class="'_home'" v-for="item in district.LadyList" :meInfo="item" />
+          <MeCard :mode="'_home'" v-for="item in district.LadyList" :meInfo="item" />
         </MeLayout>
       </div>
     </template>
@@ -55,7 +55,7 @@
           <span class="_more" @click="toPage('town_outside')">更多外約 >></span>
         </div>
         <MeLayout>
-          <MeCard :class="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
+          <MeCard :mode="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
         </MeLayout>
       </div>
     </template>
@@ -72,7 +72,7 @@ import awt from "@/awt";
 import { Lady_Firstpage_Search } from "@/api";
 //components
 import MeLayout from "@c/MeLayout";
-import MeCard from "@c/MeCard.vue";
+import MeCard from "@c/MeCard/MeCard.vue";
 import slick from "vue-slick";//initialSlide
 export default {
   components: { MeLayout, slick, MeCard, awt },

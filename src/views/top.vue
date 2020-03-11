@@ -8,7 +8,7 @@
         </template>
         <template slot="body">
           <MeLayout>
-            <MeCard :class="'_top'" v-for="(item,index) in me_list" :meInfo="item" />
+            <MeCard :mode="'_top'" v-for="(item,index) in me_list" :meInfo="item" />
           </MeLayout>
         </template>
         <template slot="pagination" v-if="me_list.length">
@@ -26,7 +26,7 @@ import { Lady_Search } from "@/api";
 //components
 import MeLayout from "@c/MeLayout";
 import SideLayout from "@c/SideLayout";
-import MeCard from "@c/MeCard";
+import MeCard from "@c/MeCard/MeCard.vue";
 import pagination from "@c/pagination";
 export default {
   components: { SideLayout, MeLayout, MeCard, pagination },

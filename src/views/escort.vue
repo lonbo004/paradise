@@ -9,7 +9,7 @@
     <template v-if="me_list.length">
       <div class="es_ctn">
         <MeLayout>
-          <MeCard :class="'_es'" v-for="(item,index) in me_list" :meInfo="item" />
+          <EsMeCard :mode="'_es'" v-for="(item,index) in me_list" :meInfo="item" />
         </MeLayout>
         <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="()=>{getData(false)}" />
       </div>
@@ -23,10 +23,10 @@ import { mapState, mapGetters } from "vuex";
 import { Escort_Search } from "@/api";
 //components
 import MeLayout from "@c/MeLayout";
-import MeCard from "@c/MeCard";
+import EsMeCard from "@c/MeCard/EsMeCard.vue";
 import pagination from "@c/pagination";
 export default {
-  components: { MeLayout, MeCard, pagination },
+  components: { MeLayout, EsMeCard, pagination },
   data() {
     return {
       count: 0,

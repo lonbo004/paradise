@@ -8,7 +8,7 @@
     </div>
     <div class="kw_ctn" v-if="me_list.length">
       <MeLayout>
-        <MeCard :class="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
+        <MeCard :mode="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
       </MeLayout>
       <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="()=>{getData(false)}" />
     </div>
@@ -19,7 +19,7 @@
 import { Lady_Keywords_Search } from "@/api";
 //components
 import MeLayout from "@c/MeLayout";
-import MeCard from "@c/MeCard";
+import MeCard from "@c/MeCard/MeCard.vue";
 import pagination from "@c/pagination";
 export default {
   components: { MeLayout, MeCard, pagination },
