@@ -12,9 +12,9 @@
           </div>
           <div class="_signup" v-show="!isLoginPage">
             <input type="text" v-model="signup.account" placeholder="帳號" />
-            <input type="text" v-model="signup.name" placeholder="姓名" />
             <input type="password" v-model="signup.password" placeholder="密碼" />
             <input type="password" v-model="signup.password2" placeholder="確認密碼" />
+            <input type="text" v-model="signup.name" placeholder="暱稱" />
             <div class="l_btn btn1" @click="Member_Create">註冊</div>
           </div>
           <div v-if="siteInfo.OpenRegister" @click="isLoginPage = !isLoginPage" class="switch_btn btn1">{{isLoginPage? '我要註冊' : '會員登入'}}</div>
