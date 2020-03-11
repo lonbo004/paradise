@@ -104,7 +104,7 @@
             <span>{{currentMe.discount||"暫無"}}</span>
           </div>
           <div class="service_list">
-            備註 :
+            商品優惠(備註事項) :
             <span>{{currentMe.note||"暫無"}}</span>
           </div>
         </div>
