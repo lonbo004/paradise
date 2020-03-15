@@ -8,14 +8,7 @@ export default {
     SiteCode: String,
     callback: Function
   },
-  computed: {
-    siteReady: {
-      get() { return this.$store.state.siteReady; },
-      set(val) { this.$store.state.siteReady = val; }
-    },
-  },
   mounted() {
-    if (this.siteReady) return false;
     GetInfo(this.SiteCode).then(res => {
       if (!res.Data || res.Data.Site.status === 0) {
         this.callback();
@@ -24,9 +17,11 @@ export default {
       }
       if (!res.Data.Site.LogoUrl) res.Data.Site.LogoUrl = "./img/logo_default.jpg";
       this.$store.state.siteData = res.Data || {};
-      this.siteReady = true;
+      this.$store.state.siteReady = true;
       //html render
       document.title = res.Data.Site.Name;
+    }).finally(() => {
+      this.$destroy();
     });
   }
 };
