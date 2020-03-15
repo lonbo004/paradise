@@ -51,7 +51,7 @@ export default {
       return [_min, _max].filter(x => x > 0).join("~");
     },
     total_point() {
-      return this.mode === "_top_home" && this.meInfo.total_point ? `${this.meInfo.total_point}分` : "";
+      return this.mode === "_top_home" && this.meInfo.total_point ? `${NP.round(this.meInfo.total_point, 1)}分` : "";
     },
     templateList() {
       let result = [];

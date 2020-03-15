@@ -853,6 +853,14 @@ body{
     .bc(#ddd);
     position: relative;
     padding: 20px 2%;
+    display: flex;
+    justify-content: space-around;
+    .el-select{
+      flex-shrink: 1;
+      @media(max-width: @md){
+        margin: 0 1%;
+      }
+    }
   }
 }
 .es_frame {

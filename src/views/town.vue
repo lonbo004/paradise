@@ -7,7 +7,7 @@
         <span>{{count}}</span>
         位
       </div>
-      <div class="t_s_row fx jcsa">
+      <div class="t_s_row">
         <el-select v-model="params.district_code" placeholder="地區">
           <el-option :label="'不限'" :value="'-1'"></el-option>
           <el-option v-for="item in DistrictList" :label="item.Name" :value="item.Code"></el-option>

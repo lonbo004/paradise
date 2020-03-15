@@ -136,14 +136,22 @@ export default {
       }
     },
     toPage(page, val) {
-      if (page === "top")
+      if (page === "top") {
+        sessionStorage.removeItem("page_top");
         this.$router.push({ path: `/${this.SiteCode}/top/${this.sd_TownList}` });
-      else if (page === "town_local")
+      }
+      else if (page === "town_local") {
+        sessionStorage.removeItem("page_town");
         this.$router.push({ path: `/${this.SiteCode}/town/${this.sd_TownList}/${val.district_code}/-1/0` });
-      else if (page === "town_outside")
+      }
+      else if (page === "town_outside") {
+        sessionStorage.removeItem("page_town");
         this.$router.push({ path: `/${this.SiteCode}/town/${this.sd_TownList}/-1/-1/1` });
-      else if (page === "escort")
+      }
+      else if (page === "escort") {
+        sessionStorage.removeItem("page_escort");
         this.$router.push({ path: `/${this.SiteCode}/escort` });
+      }
     }
   }
 };

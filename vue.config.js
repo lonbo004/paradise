@@ -4,7 +4,8 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new webpack.ProvidePlugin({
-        MMT: 'moment'
+        MMT: 'moment',
+        NP: 'number-precision'
       }),
       new webpack.DefinePlugin({
         isDEV: process.env.NODE_ENV === 'development'
