@@ -27,7 +27,7 @@
         </template>
         <template slot="body">
           <MeLayout>
-            <MeCard :mode="'_town'" v-for="(item,index) in me_list" :meInfo="item" />
+            <MeCard :mode="'_town'" v-for="(item,index) in me_list" :meInfo="item" :key="index" />
           </MeLayout>
         </template>
         <template slot="pagination" v-if="me_list.length">

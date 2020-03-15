@@ -9,7 +9,7 @@
     <template v-if="me_list.length">
       <div class="es_ctn">
         <MeLayout>
-          <EsMeCard :mode="'_es'" v-for="(item,index) in me_list" :meInfo="item" />
+          <EsMeCard :mode="'_es'" v-for="(item,index) in me_list" :meInfo="item" :key="index" />
         </MeLayout>
         <pagination :total="count" :page.sync="page" :limit.sync="page_range" @pagination="()=>{getData(false)}" />
       </div>

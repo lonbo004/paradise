@@ -7,7 +7,7 @@
     <div class="search_ctn">
       <template v-if="me_list.length">
         <MeLayout>
-          <MeCard :mode="'_kw'" v-for="(item,index) in me_list" :meInfo="item" />
+          <MeCard :mode="'_kw'" v-for="(item,index) in me_list" :meInfo="item" :key="index" />
         </MeLayout>
         <pagination :total="count" :page.sync="params.page" :limit.sync="params.page_range" @pagination="()=>{getData(false)}" />
       </template>

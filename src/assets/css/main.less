@@ -125,7 +125,9 @@ body{
       position: relative;
       text-align: center;
       .f_icon{
-        cursor: pointer;
+        :not(._loading){
+          .cp();
+        }
         .W_H(50px,100%);
         display: inline-block;
         background-size: 75%;
@@ -165,6 +167,9 @@ body{
           //   background-image: url('~@img/logout_on.png');
           // }
         }
+      }
+      .el-loading-mask{
+        background: none;
       }
     }
   }

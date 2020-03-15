@@ -9,6 +9,7 @@ export default new Vuex.Store({
     siteData: {},
     memberData: {},
     currentMe: {},
+    isLoading: false,
     //login
     isLogin: false,
     login_show: false,

@@ -56,6 +56,9 @@
               </div>
             </template>
           </div>
+          <div class="f_btn">
+            <div class="f_icon _loading" v-loading="isLoading"></div>
+          </div>
         </div>
       </div>
     </template>
@@ -83,7 +86,7 @@ export default {
     ////test
     ...mapState(["siteData"]),
     ////
-    ...mapState(["isLogin"]),
+    ...mapState(["isLogin", "isLoading"]),
     ...mapGetters(["siteInfo", "MarqueeList"]),
     login_show: {
       get() { return this.$store.state.login_show; },
@@ -160,6 +163,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

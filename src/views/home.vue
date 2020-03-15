@@ -29,7 +29,7 @@
           <!-- <span class="_2" @click="toPage('top')">更多排行 >></span> -->
         </div>
         <MeLayout>
-          <MeCard :mode="'_top_home'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" />
+          <MeCard :mode="'_top_home'" v-for="(item,index) in LeaderBoard_LadyList" :meInfo="item" :key="index" />
         </MeLayout>
       </div>
     </template>
@@ -42,7 +42,7 @@
           <span class="_more" @click="toPage('town_local', district)">更多定點 >></span>
         </div>
         <MeLayout>
-          <MeCard :mode="'_home'" v-for="item in district.LadyList" :meInfo="item" />
+          <MeCard :mode="'_home'" v-for="item in district.LadyList" :meInfo="item" :key="index" />
         </MeLayout>
       </div>
     </template>
@@ -55,7 +55,7 @@
           <span class="_more" @click="toPage('town_outside')">更多外約 >></span>
         </div>
         <MeLayout>
-          <MeCard :mode="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" />
+          <MeCard :mode="'_home'" v-for="(item,index) in Outside_LadyList" :meInfo="item" :key="index" />
         </MeLayout>
       </div>
     </template>
@@ -100,7 +100,10 @@ export default {
     },
     cacheData() {
       return {
-        sd_TownList: this.sd_TownList
+        sd_TownList: this.sd_TownList,
+        LeaderBoard_LadyList: this.LeaderBoard_LadyList,
+        Locate_LadyList: this.Locate_LadyList,
+        Outside_LadyList: this.Outside_LadyList
       }
     }
   },

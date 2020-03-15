@@ -119,7 +119,7 @@ export default {
       set(val) { this.$store.state.currentMe = val; }
     },
     re_total_point: {
-      get() { return this.total_point / 2; },
+      get() { return NP.around(this.total_point / 2, 1); },
       set(val) { this.total_point = val * 2; }
     },
     re_face_point: {
