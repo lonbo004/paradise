@@ -42,7 +42,7 @@
           <span class="_more" @click="toPage('town_local', district)">更多定點 >></span>
         </div>
         <MeLayout>
-          <MeCard :mode="'_home'" v-for="item in district.LadyList" :meInfo="item" :key="index" />
+          <MeCard :mode="'_home'" v-for="(item,index) in district.LadyList" :meInfo="item" :key="index" />
         </MeLayout>
       </div>
     </template>
