@@ -2,6 +2,12 @@
   <div class="me_box" :class="mode">
     <div class="_photo">
       <img :src="photo" @click="toDetail" />
+      <div v-if="meInfo .view_level == 80" class="_vip fx jcc aic">
+        <span>
+          VIP
+          <br />限定
+        </span>
+      </div>
     </div>
     <div class="_data">
       <div class="_name">

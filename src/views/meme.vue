@@ -6,6 +6,12 @@
           <div class="me_box fx">
             <div class="_photo">
               <img :src="photo" />
+              <div v-if="currentMe .view_level == 80" class="_vip fx jcc aic">
+                <span>
+                  VIP
+                  <br />限定
+                </span>
+              </div>
             </div>
             <div class="_data _fill">
               <div class="_name">{{currentMe.name}}</div>

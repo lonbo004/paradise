@@ -35,6 +35,7 @@
     overflow: hidden;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    position: relative;
     .cp();
     @media (max-width: @lg) and (min-width: 801px) {
       height: 30vw;
@@ -44,6 +45,29 @@
     }
     & > img {
       width: 100%;
+      position: relative;
+    }
+  }
+  ._vip{
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    .WH(140px);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    .bc(rgba(255,255,255, 0.25));
+    @media(max-width: @sm){
+      .WH(22vw);
+      bottom: 5%;
+    }
+    &>span{
+      color: rgba(0,0,0,0.3);
+      font-size: 40px;
+      font-weight: bold;
+      text-align: center;
+      @media(max-width: @sm){
+        font-size: 6vw;
+      }
     }
   }
   ._data {
