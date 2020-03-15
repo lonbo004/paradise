@@ -39,29 +39,9 @@
           </div>
         </div>
         <div class="meme_service">
-          <div class="service_list">
-            服務地區 :
-            <span>{{currentMe.district_code_name||"暫無"}}</span>
-          </div>
-          <div class="service_list">
-            服務模式 :
-            <span>{{currentMe.service_mode_name||"暫無"}}</span>
-          </div>
-          <div class="service_list">
-            可配合 :
-            <span>{{currentMe.allow_name||"暫無"}}</span>
-          </div>
-          <div class="service_list">
-            不接受 :
-            <span>{{currentMe.not_allow_name||"暫無"}}</span>
-          </div>
-          <div class="service_list">
-            加價項目 :
-            <span>{{currentMe.discount||"暫無"}}</span>
-          </div>
-          <div class="service_list">
-            商品優惠(備註事項) :
-            <span>{{currentMe.note||"暫無"}}</span>
+          <div class="service_list fx" v-for="item in templateList_service">
+            <div>{{item.label}}</div>
+            <div v-html="item.value" class="_fill"></div>
           </div>
         </div>
         <div class="meme_star">
@@ -202,6 +182,21 @@ export default {
           result[result.length - 1].push(new row("外約短鐘:", this.currentMe.shorttime_outside_final_price))
         }
       }
+      return result;
+    },
+    templateList_service() {
+      let result = [];
+      function row(label, value) {
+        return { label, value }
+      }
+      result = [
+        new row("服務地區： ", this.currentMe.district_code_name || "暫無"),
+        new row("服務模式： ", this.currentMe.service_mode_name || "暫無"),
+        new row("可配合： ", this.currentMe.allow_name || "暫無"),
+        new row("不接受： ", this.currentMe.not_allow_name || "暫無"),
+        new row("加價項目： ", this.currentMe.discount || "暫無"),
+        new row("商品優惠(備註事項)： ", this.currentMe.note || "暫無")
+      ]
       return result;
     },
     MMT: () => MMT

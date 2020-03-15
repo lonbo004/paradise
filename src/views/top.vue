@@ -35,7 +35,7 @@ export default {
       count: 0,
       me_list: [],
       params: {
-        town_code: "",
+        town_code: this.$route.params.town_code,
         page: 1,
         page_range: 10,
       },
@@ -46,10 +46,11 @@ export default {
     ...mapGetters(["TownList"]),
   },
   mounted() {
-    this.params.town_code = this.$route.params.town_code;
+    this.getData(false);
   },
   methods: {
     getData(isNewSearch) {
+      this.params.town_code = val.params.town_code;
       if (isNewSearch) this.params.page = 1;
       Lady_Search(this.params).then(res => {
         this.me_list = res.LadyList;
@@ -65,13 +66,9 @@ export default {
   watch: {
     $route: {
       handler(val) {
-        if (!val.params.town_code) return false;
-        if (val.params.town_code === this.params.town_code) return false;
-        this.params.town_code = val.params.town_code;
         this.getData(true);
       },
       deep: true,
-      immediate: true
     }
   }
 }

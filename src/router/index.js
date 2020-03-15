@@ -14,11 +14,11 @@ const routes = [
     name: 'keyword',
     component: () => import('../views/keyword.vue'),
   },
-  {
-    path: '/:SiteCode/top/:town_code',
-    name: 'top',
-    component: () => import('../views/top.vue'),
-  },
+  // {
+  //   path: '/:SiteCode/top/:town_code',
+  //   name: 'top',
+  //   component: () => import('../views/top.vue'),
+  // },
   {
     path: '/:SiteCode/town/:town_code/:district_code/:country_code/:service_type_code',
     name: 'town',

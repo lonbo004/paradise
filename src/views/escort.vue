@@ -25,8 +25,11 @@ import { Escort_Search } from "@/api";
 import MeLayout from "@c/MeLayout";
 import EsMeCard from "@c/MeCard/EsMeCard.vue";
 import pagination from "@c/pagination";
+//mixins
+import cacheCurrentPage from "@mix/cacheCurrentPage";
 export default {
   components: { MeLayout, EsMeCard, pagination },
+  mixins: [cacheCurrentPage],
   data() {
     return {
       count: 0,
@@ -34,6 +37,14 @@ export default {
       type: 1,// 0:單純, 1:全方位
       page: 1,
       page_range: 10,
+    }
+  },
+  computed: {
+    cacheData() {
+      return {
+        type: this.type,
+        page: this.page
+      }
     }
   },
   mounted() {

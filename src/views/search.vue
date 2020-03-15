@@ -126,8 +126,11 @@ import { Lady_Search } from "@/api";
 import MeLayout from "@c/MeLayout";
 import MeCard from "@c/MeCard/MeCard.vue";
 import pagination from "@c/pagination";
+//mixins
+import cacheCurrentPage from "@mix/cacheCurrentPage";
 export default {
   components: { MeLayout, MeCard, pagination },
+  mixins: [cacheCurrentPage],
   data() {
     return {
       me_list: [],
@@ -156,6 +159,18 @@ export default {
   },
   computed: {
     ...mapGetters(["siteInfo", "TownList", "CountryList", "EnvironmentList", "CupList", "ServiceTypeList", "ServiceModeList", "AllowServiceList"]),
+    cacheData() {
+      return {
+        params: this.params,
+        isGetData: this.isGetData
+      }
+    }
+  },
+  mounted() {
+    if (this.isGetData) {
+      this.isGetData = false;
+      this.getData(false);
+    }
   },
   methods: {
     getData(isNewSearch) {

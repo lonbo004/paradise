@@ -33,9 +33,9 @@
           </div>
         </div>
         <div class="meme_service">
-          <div class="service_list" v-for="item in templateList_detail">
-            {{item.label}}
-            <span v-html="item.value"></span>
+          <div class="service_list fx" v-for="item in templateList_service">
+            <div>{{item.label}}</div>
+            <div v-html="item.value" class="_fill"></div>
           </div>
         </div>
       </div>
@@ -87,17 +87,17 @@ export default {
       ]);
       return result;
     },
-    templateList_detail() {
+    templateList_service() {
       let result = [];
       function row(label, value) {
         return { label, value }
       }
       result = [
-        new row("個人基本介紹:", this.currentMe.introduce_detail),
-        new row("可接受服務:", this.currentMe.allow_name),
-        new row("不可接受服務:", this.currentMe.not_allow_name),
-        new row("預約價格說明:", this.currentMe.price_detail),
-        new row("約會備註:", this.currentMe.date_detail)
+        new row("個人基本介紹： ", this.currentMe.introduce_detail),
+        new row("可配合： ", this.currentMe.allow_name),
+        new row("不接受： ", this.currentMe.not_allow_name),
+        new row("預約價格說明： ", this.currentMe.price_detail),
+        new row("約會備註： ", this.currentMe.date_detail)
       ]
       return result;
     },

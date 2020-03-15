@@ -47,8 +47,11 @@ import MeLayout from "@c/MeLayout";
 import SideLayout from "@c/SideLayout";
 import MeCard from "@c/MeCard/MeCard.vue";
 import pagination from "@c/pagination";
+//mixins
+import cacheCurrentPage from "@mix/cacheCurrentPage";
 export default {
   components: { SideLayout, MeLayout, MeCard, pagination },
+  mixins: [cacheCurrentPage],
   data() {
     return {
       me_list: [],
@@ -57,7 +60,7 @@ export default {
         town_code: this.$route.params.town_code,
         district_code: this.$route.params.district_code,
         country_code: this.$route.params.country_code,
-        service_type_code: this.$route.params.service_type_code
+        service_type_code: this.$route.params.service_type_code,
       },
       page: 1,
       page_range: 10,
@@ -68,13 +71,19 @@ export default {
   computed: {
     ...mapState(["SiteCode"]),
     ...mapGetters(["siteInfo", "TownList", "CountryList", "ServiceTypeList"]),
+    cacheData() {
+      return {
+        params: this.params,
+        page: this.page
+      }
+    }
   },
-  created() {
+  mounted() {
     this.DistrictList = this.TownList.find(x => x.Code === this.params.town_code).DistrictList;
+    this.getData(false);
   },
   methods: {
     getData(isNewSearch) {
-      console.log(11111, isNewSearch, this.ready)
       if (!this.ready) return false;
       if (isNewSearch) this.page = 1;
       let _params = JSON.parse(JSON.stringify(this.params));
@@ -85,7 +94,6 @@ export default {
       }
       _params.page = this.page;
       _params.page_range = this.page_range;
-      console.log(454646, _params)
       Lady_Search(_params).then(res => {
         this.me_list = res.LadyList;
         this.count = res.count;
@@ -107,7 +115,9 @@ export default {
   watch: {
     params: {
       handler(val) {
-        this.$router.replace({ path: `/${this.SiteCode}/town/${this.params.town_code}/${this.params.district_code}/${this.params.country_code}/${this.params.service_type_code}` })
+        const _path = `/${this.SiteCode}/town/${this.params.town_code}/${this.params.district_code}/${this.params.country_code}/${this.params.service_type_code}`;
+        if (_path === this.$route.path) return false;
+        this.$router.replace({ path: _path });
       },
       deep: true
     },
@@ -115,8 +125,7 @@ export default {
       handler(val) {
         this.getData(true);
       },
-      deep: true,
-      immediate: true
+      deep: true
     }
   }
 };

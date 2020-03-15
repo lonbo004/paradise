@@ -16,7 +16,7 @@
     </div>
     <div class="town_frame">
       <div class="town_ctn fx fw">
-        <div class="town_box" v-for="item in TownList" :class="{active: item.Code === sd_TownList}" @click="sp_TownList('get', item.Code)">{{item.Name}}</div>
+        <div class="town_box" v-for="item in TownList" :class="{active: item.Code === sd_TownList}" @click="sp_TownList('sd', item.Code)">{{item.Name}}</div>
         <div class="town_box" @click="toPage('escort')">伴遊</div>
       </div>
     </div>
@@ -60,7 +60,7 @@
       </div>
     </template>
     <!-- awt -->
-    <awt v-if="siteInfo.MainTown" :callback="callback" />
+    <awt v-if="!sd_TownList&&siteInfo.MainTown" :callback="callback" />
   </div>
 </template>
 
@@ -74,8 +74,11 @@ import { Lady_Firstpage_Search } from "@/api";
 import MeLayout from "@c/MeLayout";
 import MeCard from "@c/MeCard/MeCard.vue";
 import slick from "vue-slick";//initialSlide
+//mixins
+import cacheCurrentPage from "@mix/cacheCurrentPage";
 export default {
   components: { MeLayout, slick, MeCard, awt },
+  mixins: [cacheCurrentPage],
   data() {
     return {
       slickOptions: {
@@ -94,13 +97,17 @@ export default {
     ...mapGetters(["siteInfo", "TownList", "MarqueeList"]),
     currentTown_name() {
       return (this.TownList.find(x => x.Code === this.sd_TownList) || {}).Name;
+    },
+    cacheData() {
+      return {
+        sd_TownList: this.sd_TownList
+      }
     }
   },
   mounted() {
-
+    if (this.sd_TownList) this.sp_TownList("get", this.sd_TownList);
   },
   methods: {
-    sp_TownList() { },
     //slick
     reInit() {
       this.$nextTick(() => {
@@ -116,7 +123,6 @@ export default {
     },
     sp_TownList(type, code) {
       if (type === "get") {
-        if (this.sd_TownList === code) return false;
         this.sd_TownList = code;
         Lady_Firstpage_Search(code).then(res => {
           this.LeaderBoard_LadyList = res.LeaderBoard_LadyList;
@@ -124,20 +130,20 @@ export default {
           this.Outside_LadyList = res.Outside_LadyList;
         })
       }
+      else if (type === "sd") {
+        if (this.sd_TownList === code) return false;
+        this.sp_TownList("get", code);
+      }
     },
     toPage(page, val) {
-      if (page === "top") {
+      if (page === "top")
         this.$router.push({ path: `/${this.SiteCode}/top/${this.sd_TownList}` });
-      }
-      else if (page === "town_local") {
+      else if (page === "town_local")
         this.$router.push({ path: `/${this.SiteCode}/town/${this.sd_TownList}/${val.district_code}/-1/0` });
-      }
-      else if (page === "town_outside") {
+      else if (page === "town_outside")
         this.$router.push({ path: `/${this.SiteCode}/town/${this.sd_TownList}/-1/-1/1` });
-      }
-      else if (page === "escort") {
+      else if (page === "escort")
         this.$router.push({ path: `/${this.SiteCode}/escort` });
-      }
     }
   }
 };
