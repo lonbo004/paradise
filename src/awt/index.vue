@@ -7,7 +7,6 @@ export default {
   },
   mounted() {
     this.callback && this.callback();
-    this.$destroy();
   }
 }
 </script>

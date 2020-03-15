@@ -3,7 +3,14 @@
     <template v-if="SiteCode">
       <div class="h_frame">
         <div class="h_ctn _head ctn1 clear" v-if="isHomePage">
-          <div class="title">{{siteInfo.Name}}</div>
+          <div class="title">
+            {{siteInfo.Name}}
+            <br />
+            {{SiteCode&&!isLogin}}
+            <br />
+            {{isLogin}}
+            <br />
+          </div>
           <img v-if="!isLogin" class="login" src="@img/user.png" @click="login_show = true" />
         </div>
         <div class="h_ctn _nav fx aic ctn1" :class="{_home: isHomePage}">
@@ -61,18 +68,19 @@
     </template>
     <Login v-if="login_show" />
     <!-- awt -->
-    <GetInfoVue v-if="SiteCode" :SiteCode="SiteCode" :callback="clear" />
+    <awt v-if="SiteCode&&!isLogin" :callback="GetInfo" key="SiteCode" :aaa="'SiteCode'" />
+    <awt v-if="isLogin" :callback="GetInfo" key="isLogin" :aaa="'isLogin'" />
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import GetInfoVue from "@/awt/GetInfo.vue";
 import { GetInfo } from "@/api";
 //components
+import awt from "@/awt";
 import Login from "@c/Login";
 export default {
-  components: { GetInfoVue, Login },
+  components: { awt, Login },
   data() {
     return {
       keyword: ""
@@ -135,7 +143,21 @@ export default {
       if (page === "search") {
         this.$router.push({ path: `/${this.SiteCode}/search/` })
       }
-    }
+    },
+    GetInfo() {
+      GetInfo(this.SiteCode).then(res => {
+        if (!res.Data || res.Data.Site.status === 0) {
+          this.clear();
+          this.$router.replace({ path: "/" });
+          return false;
+        }
+        if (!res.Data.Site.LogoUrl) res.Data.Site.LogoUrl = "./img/logo_default.jpg";
+        this.$store.state.siteData = res.Data || {};
+        this.$store.state.siteReady = true;
+        //html render
+        document.title = res.Data.Site.Name;
+      })
+    },
   }
 };
 </script>

@@ -59,8 +59,8 @@ export default {
   mounted() {
     if (isDEV) {
       setTimeout(() => {
-        this.account = "iloveu";
-        this.password = "aa1234";
+        this.login.account = "iloveu";
+        this.login.password = "aa1234";
       }, 0);
     }
   },
