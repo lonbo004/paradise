@@ -220,7 +220,7 @@ export default {
       Lady_GetOne(this.$route.params.code).then(res => {
         if (res) {
           this.currentMe = res;
-          this.total_point = res.total_point;
+          this.total_point = NP.round(res.total_point, 1);
           this.face_point = res.face_point;
           this.attitude_point = res.attitude_point;
           this.body_point = res.body_point;
