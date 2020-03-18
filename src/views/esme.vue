@@ -3,7 +3,7 @@
     <div class="meme_ctn">
       <div class="banner_frame">
         <div class="banner_ctn">
-          <div class="me_box fx">
+          <div class="me_box fx fxfill">
             <div class="_photo">
               <img :src="photo" />
             </div>
@@ -23,7 +23,7 @@
       </div>
       <div class="meme_info">
         <div class="meme_file fx fw jcsb">
-          <div class="file_box" v-for="item in currentMe.FileList">
+          <div class="file_box" v-for="(item,index) in currentMe.FileList" @click="sp_FileList('sd',index)">
             <template v-if="/^image/.test(item.filetype)">
               <img :src="item.path" />
             </template>
@@ -33,26 +33,31 @@
           </div>
         </div>
         <div class="meme_service">
-          <div class="service_list fx" v-for="item in templateList_service">
+          <div class="service_list fx fxfill" v-for="item in templateList_service">
             <div>{{item.label}}</div>
             <div v-html="item.value" class="_fill"></div>
           </div>
         </div>
       </div>
     </div>
+    <Zoom v-if="zoom_show" :index="sd_FileList" :list="currentMe.FileList" :close="()=>{zoom_show = false}"></Zoom>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import slick from "vue-slick";//initialSlide
 //api
 import { Escort_GetOne } from "@/api";
+//components
+import Zoom from "@c/Zoom";
 export default {
-  components: { slick },
+  components: { Zoom },
   data() {
     return {
-      currentMe: {}
+      currentMe: {},
+      // zoom
+      sd_FileList: 0,
+      zoom_show: false
     }
   },
   computed: {
@@ -113,6 +118,12 @@ export default {
           this.currentMe = res;
         };
       })
+    },
+    sp_FileList(type, index) {
+      if (type === "sd") {
+        this.sd_FileList = index;
+        this.zoom_show = true;
+      }
     }
   }
 };

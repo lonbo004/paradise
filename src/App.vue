@@ -1,23 +1,23 @@
 <template>
-  <div id="app" class="minH100vh fx fdc">
+  <div id="app" class="minH100vh fx fxfill fdc">
     <template v-if="SiteCode">
       <div class="h_frame">
         <div class="h_ctn _head ctn1 clear" v-if="isHomePage">
           <div class="title">{{siteInfo.Name}}</div>
           <img v-if="!isLogin" class="login" src="@img/user.png" @click="login_show = true" />
         </div>
-        <div class="h_ctn _nav fx aic ctn1" :class="{_home: isHomePage}">
+        <div class="h_ctn _nav fx aic fxfill ctn1" :class="{_home: isHomePage}">
           <div v-if="isHomePage" class="index_logo" :style="{backgroundImage: `url(${siteInfo.LogoUrl})`}"></div>
           <div v-else class="index_logo page_go_back" @click="toPage('back')"></div>
           <div class="kw_box _fill">
-            <div class="kw_item fx aic">
+            <div class="kw_item fx fxfill aic">
               <input v-model="keyword" type="text" placeholder="輸入關鍵字查詢" class="_fill" @keypress.enter="sp_keyword('get')" />
               <img class="icon" src="@img/index-search.png" @click="sp_keyword('get')" />
             </div>
           </div>
           <a class="adc" v-html="`進階<br class=up_sm_hide />搜尋`" @click="toPage('search')"></a>
         </div>
-        <div class="h_ctn _mar fx aic ctn1" v-if="MarqueeList.length">
+        <div class="h_ctn _mar fx fxfill aic ctn1" v-if="MarqueeList.length">
           <marquee-text class="_fill">
             <span class="vtc" v-for="item in MarqueeList">
               <img class="laba" src="@img/laba.png" />

@@ -29,7 +29,7 @@
       </div>
       <div class="meme_info">
         <div class="meme_file fx fw jcsb">
-          <div class="file_box" v-for="item in currentMe.FileList">
+          <div class="file_box" v-for="(item,index) in currentMe.FileList" @click="sp_FileList('sd',index)">
             <template v-if="/^image/.test(item.filetype)">
               <img :src="item.path" />
             </template>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="meme_service">
-          <div class="service_list fx" v-for="item in templateList_service">
+          <div class="service_list fx fxfill" v-for="item in templateList_service">
             <div>{{item.label}}</div>
             <div v-html="item.value" class="_fill"></div>
           </div>
@@ -91,37 +91,29 @@
         </div>
       </div>
     </div>
-    <div class="zoom_frame">
-      <slick ref="slick" :options="slickOptions" @reInit="reInit">
-        <template v-if="/^image/.test(item.filetype)">
-            <img :src="item.path" />
-        </template>
-        <template v-if="/^video/.test(item.filetype)">
-          <video :src="item.path" controls preload></video>
-        </template>
-      </slick>
-    </div>
+    <Zoom v-if="zoom_show" :index="sd_FileList" :list="currentMe.FileList" :close="()=>{zoom_show = false}"></Zoom>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import slick from "vue-slick";//initialSlide
 //api
 import { Lady_GetOne, Message_Create, Score_Create } from "@/api";
+//components
+import Zoom from "@c/Zoom";
 export default {
-  components: { slick },
+  components: { Zoom },
   data() {
     return {
-      slickOptions: {
-        
-      },
       cotents: '',
       total_point: 0,
       face_point: 0,
       attitude_point: 0,
       body_point: 0,
       skill_point: 0,
+      // zoom
+      sd_FileList: 0,
+      zoom_show: false
     }
   },
   computed: {
@@ -240,6 +232,12 @@ export default {
           this.skill_point = res.skill_point;
         };
       })
+    },
+    sp_FileList(type, index) {
+      if (type === "sd") {
+        this.sd_FileList = index;
+        this.zoom_show = true;
+      }
     }
   }
 };

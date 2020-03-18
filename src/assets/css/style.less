@@ -98,11 +98,13 @@ ol {
 //fx
 .fx{
   display: flex;
-  ._fill{
-    flex-grow: 1;
-  }
-  >:not(._fill){
-    flex-shrink: 0;
+  &.fxfill{
+    &>._fill{
+      flex-grow: 1;
+    }
+    &>:not(._fill){
+      flex-shrink: 0;
+    }
   }
 }
 .fw{
@@ -122,7 +124,7 @@ ol {
 }
 .fdc{
   flex-direction: column;
-  ._fill{
+  &>._fill{
     overflow-y: auto;
   }
 }
@@ -194,21 +196,21 @@ ol {
 .slick-next:before {
   content: "";
 }
-// .slick-arrow {
-//   .W_H(@arrowW, @arrowH);
-//   z-index: 1;
-//   @media (max-width: @sm) {
-//     .W_H((@arrowW * @arrowR), (@arrowH * @arrowR));
-//   }
-//   &.slick-prev {
-//     background: url("../img/arr_left.png") center left no-repeat;
-//     left: 10px;
-//   }
-//   &.slick-next {
-//     background: url("../img/arr_right.png") center right no-repeat;
-//     right: 10px;
-//   }
-// }
+.slick-arrow {
+  .W_H(@arrowW, @arrowH);
+  z-index: 1;
+  @media (max-width: @sm) {
+    .W_H((@arrowW * @arrowR), (@arrowH * @arrowR));
+  }
+  &.slick-prev {
+    background: url("../img/arr_left.png") center left no-repeat;
+    left: 10px;
+  }
+  &.slick-next {
+    background: url("../img/arr_right.png") center right no-repeat;
+    right: 10px;
+  }
+}
 //=>img
 .slick-slide img {
   display: block !important;

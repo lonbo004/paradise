@@ -3,7 +3,7 @@
     <div class="s_head">
       <slot name="head"></slot>
     </div>
-    <div class="s_ctn fx">
+    <div class="s_ctn fx fxfill">
       <div class="s_side">
         <slot name="side"></slot>
       </div>

@@ -36,7 +36,7 @@
     <!-- 定點 -->
     <template v-for="(district,district_i) in Locate_LadyList">
       <div class="menu_frame">
-        <div class="menu_title type_title fx aic">
+        <div class="menu_title type_title fx fxfill aic">
           <span class="_town">{{currentTown_name}}{{district.district_name}}</span>
           <span class="_type _fill">定點</span>
           <span class="_more" @click="toPage('town_local', district)">更多定點 >></span>
@@ -49,7 +49,7 @@
     <!-- 外約 -->
     <template v-if="Outside_LadyList.length">
       <div class="menu_frame">
-        <div class="menu_title type_title fx aic">
+        <div class="menu_title type_title fx fxfill aic">
           <span class="_town">{{currentTown_name}}</span>
           <span class="_type _fill">外約</span>
           <span class="_more" @click="toPage('town_outside')">更多外約 >></span>

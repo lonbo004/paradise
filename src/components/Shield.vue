@@ -1,6 +1,6 @@
 <template>
   <div class="s_frame" v-show="show">
-    <div class="fx jcc aic h100">
+    <div class="s_ctn" :class="s_ctn_class">
       <slot></slot>
     </div>
   </div>
@@ -12,6 +12,10 @@ export default {
     show: {
       type: Boolean,
       default: true
+    },
+    s_ctn_class: {
+      type: String,
+      default: "fx jcc aic h100"
     }
   },
   beforeDestroy() {
