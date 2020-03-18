@@ -73,7 +73,7 @@ import { Lady_Firstpage_Search } from "@/api";
 //components
 import MeLayout from "@c/MeLayout";
 import MeCard from "@c/MeCard/MeCard.vue";
-import slick from "vue-slick";//initialSlide
+import slick from "vue-slick";
 //mixins
 import cacheCurrentPage from "@mix/cacheCurrentPage";
 export default {

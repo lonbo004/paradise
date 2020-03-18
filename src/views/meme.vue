@@ -91,6 +91,16 @@
         </div>
       </div>
     </div>
+    <div class="zoom_frame">
+      <slick ref="slick" :options="slickOptions" @reInit="reInit">
+        <template v-if="/^image/.test(item.filetype)">
+            <img :src="item.path" />
+        </template>
+        <template v-if="/^video/.test(item.filetype)">
+          <video :src="item.path" controls preload></video>
+        </template>
+      </slick>
+    </div>
   </div>
 </template>
 
@@ -103,6 +113,9 @@ export default {
   components: { slick },
   data() {
     return {
+      slickOptions: {
+        
+      },
       cotents: '',
       total_point: 0,
       face_point: 0,
