@@ -1,6 +1,6 @@
 <template>
-  <div class="s_frame" v-show="show">
-    <div class="s_ctn" :class="s_ctn_class">
+  <div class="shield_frame" v-show="show">
+    <div class="shield_ctn" :class="s_ctn_class">
       <slot></slot>
     </div>
   </div>
@@ -45,10 +45,9 @@ export default {
   }
 }
 </script>
-
-<style lang="less">
+<style lang="less" scoped>
 @import "~@css/fn.less";
-.s_frame {
+.shield_frame {
   .room_f();
   .bc(rgba(0, 0, 0, 0.8));
   z-index: 200;
