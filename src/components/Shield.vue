@@ -1,5 +1,5 @@
 <template>
-  <div class="shield_frame" v-show="show">
+  <div class="shield_frame" ref="Shield" v-show="show" @keyup.esc="closeEvent" tabindex="-1">
     <div class="shield_ctn" :class="s_ctn_class">
       <slot></slot>
     </div>
@@ -16,7 +16,13 @@ export default {
     s_ctn_class: {
       type: String,
       default: "fx jcc aic h100"
-    }
+    },
+    close: Function
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$refs.Shield.focus();
+    }, 0);
   },
   beforeDestroy() {
     this.sp_show("close");
@@ -33,6 +39,9 @@ export default {
           el.style.overflowY = "auto";
         })
       }
+    },
+    closeEvent() {
+      this.close && this.close();
     }
   },
   watch: {

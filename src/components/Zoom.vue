@@ -1,5 +1,5 @@
 <template>
-  <Shield :s_ctn_class="''">
+  <Shield :s_ctn_class="''" :close="close">
     <slick class="zoom_frame" ref="slick" :options="slickOptions" @reInit="reInit">
       <template v-for="item in list">
         <template v-if="/^image/.test(item.filetype)">
