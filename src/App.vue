@@ -4,7 +4,7 @@
       <div class="h_frame">
         <div class="h_ctn _head ctn1 clear" v-if="isHomePage">
           <div class="title">{{siteInfo.Name}}</div>
-          <img v-if="!isLogin" class="login" src="@img/user.png" @click="login_show = true" />
+          <!-- <img v-if="!isLogin" class="login" src="@img/user.png" @click="login_show = true" /> -->
         </div>
         <div class="h_ctn _nav fx aic fxfill ctn1" :class="{_home: isHomePage}">
           <div v-if="isHomePage" class="index_logo" :style="{backgroundImage: `url(${siteInfo.LogoUrl})`}"></div>
@@ -44,7 +44,7 @@
               <p>Line</p>
             </a>
           </div>
-          <div class="f_btn">
+          <!-- <div class="f_btn">
             <template v-if="!isLogin">
               <div class="f_icon sign_in" @click="login_show = true">
                 <p>登入</p>
@@ -55,7 +55,7 @@
                 <p>登出</p>
               </div>
             </template>
-          </div>
+          </div> -->
           <div class="f_btn">
             <div class="f_icon _loading" v-loading="isLoading"></div>
           </div>
