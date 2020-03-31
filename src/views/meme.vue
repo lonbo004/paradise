@@ -44,7 +44,7 @@
             <div v-html="item.value" class="_fill"></div>
           </div>
         </div>
-        <div class="meme_star">
+        <!-- <div class="meme_star">
           <div class="fx aic total_start">
             <div class="score">{{total_point}}</div>
             <el-rate v-model="re_total_point" disabled></el-rate>
@@ -70,8 +70,8 @@
             <span class="_score">{{skill_point}}</span>
           </div>
           <div class="submit" v-if="isLogin" @click="memeRating">送出評分</div>
-        </div>
-        <div class="msg_ctn">
+        </div> -->
+        <!-- <div class="msg_ctn">
           <div class="fx list" v-for="item in currentMe.messageList">
             <div class="user_img">
               <img src="@img/deafult.jpg" />
@@ -88,7 +88,7 @@
             <input type="text" v-model="cotents" placeholder="發表我的評價" @keypress.enter="Message_Create" />
             <div class="comment_btn" @click="Message_Create">評價</div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <Zoom v-if="zoom_show" :index="sd_FileList" :list="currentMe.FileList" :close="()=>{zoom_show = false}"></Zoom>
