@@ -7,7 +7,7 @@
       <div class="s_side">
         <slot name="side"></slot>
       </div>
-      <div class="_fill">
+      <div class="s_box _fill">
         <div class="s_body">
           <slot name="body"></slot>
         </div>
@@ -34,6 +34,17 @@
     border-right: 1px solid #dddddd;
     @media (max-width: @md) {
       width: 20%;
+    }
+    @media (max-width: @sm) {
+      width: 15%;
+    }
+  }
+  .s_box{
+    @media (max-width: @md) {
+      width: 80%;
+    }
+    @media (max-width: @sm) {
+      width: 85%;
     }
   }
   .s_body {
