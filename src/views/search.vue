@@ -126,13 +126,11 @@ import { Lady_Search } from "@/api";
 import MeLayout from "@c/MeLayout";
 import MeCard from "@c/MeCard/MeCard.vue";
 import pagination from "@c/pagination";
-//mixins
-import cacheCurrentPage from "@mix/cacheCurrentPage";
 export default {
   components: { MeLayout, MeCard, pagination },
-  mixins: [cacheCurrentPage],
   data() {
     return {
+      // firstLoad: true,//第一次載入
       me_list: [],
       count: 0,
       params: {
@@ -159,14 +157,21 @@ export default {
   },
   computed: {
     ...mapGetters(["siteInfo", "TownList", "CountryList", "EnvironmentList", "CupList", "ServiceTypeList", "ServiceModeList", "AllowServiceList"]),
-    cacheData() {
-      return {
-        params: this.params,
-        isGetData: this.isGetData
+  },
+  created() {
+    let { params, sd_TownList } = this.$route.query;
+    if (params) {
+      params = JSON.parse(params);
+      for (let key in params) {
+        this.params[key] = params[key];
       }
+    }
+    if (sd_TownList) {
+      this.sd_TownList = sd_TownList;
     }
   },
   mounted() {
+    if (this.$route.query.params) this.isGetData = true;
     if (this.isGetData) {
       this.isGetData = false;
       this.getData(false);
@@ -175,6 +180,20 @@ export default {
   methods: {
     getData(isNewSearch) {
       if (isNewSearch) this.params.page = 1;
+      //查詢條件存queryString
+      let _params_query = {};
+      for (let key in this.params) {
+        if (Array.isArray(this.params[key]) && this.params[key].length) {
+          _params_query[key] = this.params[key];
+        }
+        else if (this.params[key]) {
+          _params_query[key] = this.params[key];
+        }
+      }
+      this.$router.push({
+        path: `${this.$route.path}?params=${JSON.stringify(_params_query)}&sd_TownList=${this.sd_TownLis}`
+      })
+      //array轉字串
       let _params = JSON.parse(JSON.stringify(this.params));
       for (let key in _params) {
         if (Array.isArray(_params[key])) {

@@ -15,7 +15,7 @@
               <img class="icon" src="@img/index-search.png" @click="sp_keyword('get')" />
             </div>
           </div>
-          <a class="adc" v-html="`進階<br class=up_sm_hide />搜尋`" @click="toPage('search')"></a>
+          <a v-if="!isSearchPage" class="adc" v-html="`進階<br class=up_sm_hide />搜尋`" @click="toPage('search')"></a>
         </div>
         <div class="h_ctn _mar fx fxfill aic ctn1" v-if="MarqueeList.length">
           <marquee-text class="_fill">
@@ -55,7 +55,7 @@
                 <p>登出</p>
               </div>
             </template>
-          </div> -->
+          </div>-->
           <div class="f_btn">
             <div class="f_icon _loading" v-loading="isLoading"></div>
           </div>
@@ -102,7 +102,10 @@ export default {
     },
     isHomePage() {
       return this.$route.name === "home";
-    }
+    },
+    isSearchPage() {
+      return this.$route.name === "search";
+    },
   },
   created() {
     this.SiteCode = location.pathname.replace(/^\//, "").split("/")[0];
