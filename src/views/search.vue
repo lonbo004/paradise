@@ -183,8 +183,10 @@ export default {
       //查詢條件存queryString
       let _params_query = {};
       for (let key in this.params) {
-        if (Array.isArray(this.params[key]) && this.params[key].length) {
-          _params_query[key] = this.params[key];
+        if (Array.isArray(this.params[key])) {
+          if (this.params[key].length) {
+            _params_query[key] = this.params[key];
+          }
         }
         else if (this.params[key]) {
           _params_query[key] = this.params[key];
@@ -192,7 +194,7 @@ export default {
       }
       this.$router.push({
         path: `${this.$route.path}?params=${JSON.stringify(_params_query)}&sd_TownList=${this.sd_TownLis}`
-      })
+      }).catch(() => { })
       //array轉字串
       let _params = JSON.parse(JSON.stringify(this.params));
       for (let key in _params) {
